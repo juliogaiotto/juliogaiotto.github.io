@@ -1,5 +1,4 @@
 <html lang="pt-br">
-
 <head>    
 <meta charset="UTF-8">
 <title>Julio Gaiotto</title>
@@ -50,7 +49,7 @@ font-variation-settings:
 display: flex;
 flex-wrap: wrap; /* Garante que quebre linha no mobile */
 }
-.w3-text-teal,.w3-hover-text-teal:hover{color:#5e8f71!important}
+
 </style>
 <script src="https://kit.fontawesome.com/0385e0dbff.js" crossorigin="anonymous"></script>    
 </head>
