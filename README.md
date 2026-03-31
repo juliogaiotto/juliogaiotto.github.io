@@ -27,6 +27,7 @@
             <div class="author-image">
                 <img class="img-shadow" src="assets/img/julio-perfil.png" alt="Julio Gaiotto" />
             </div>
+            <h1><a href="https://juliogaiotto.github.io/"><b>Julio Gaiotto<b></a></h1>
             <h1><b>Julio Gaiotto</b></h1>
             <p><i class="fa fa-briefcase fa-fw w3-large color-darkgreen"></i> 
                 Analista de Suporte | Desenvolvedor
