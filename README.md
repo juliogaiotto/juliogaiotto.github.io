@@ -12,7 +12,7 @@
 
 ## 💼 Experiência Profissional
 
-#### Analista de Suporte | Desenvolvimento | Automação
+#### Analista de Suporte | Desenvolvimento
 
 Com mais de 7 anos de jornada na área de TI, minha carreira é marcada pela agilidade e do desenvolvimento de software. Acredito que o suporte de alto nível não deve apenas conter os problemas, mas sim construir ferramentas que evitem que eles comecem. Minha experiência transita entre o atendimento crítico de sistemas e a reestruturação de processos de suporte. Consegui reduzir o tempo médio de atendimento em 40% através da implementação de bases de conhecimento sólidas e automação de processos.
 
