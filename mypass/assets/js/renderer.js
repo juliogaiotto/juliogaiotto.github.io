@@ -48,22 +48,54 @@ btnGerar.addEventListener('click', () => {
     inputSenha.value = password;
     statusMessage.innerText = "";
 });
+
 // Função para salvar
-btnSalvar.addEventListener('click', () => __awaiter(void 0, void 0, void 0, function* () {
-    const nome = inputNome.value.trim();
-    const site = inputSite.value.trim();
-    const senha = inputSenha.value;
+document.getElementById('btnSalvar').addEventListener('click', () => {
+    // Coleta os valores dos inputs
+    const nome = document.getElementById('inputNome').value;
+    const site = document.getElementById('inputSite').value;
+    const senha = document.getElementById('inputSenha').value;
+
+    // Validação básica
     if (!nome || !site || !senha) {
-        alert("Preencha o Nome, Site e gere uma Senha antes de salvar.");
+        alert("Por favor, preencha todos os campos e gere uma senha.");
         return;
     }
-    // Chama a função do main.ts através do preload (contextBridge)
-    // @ts-ignore (ignora o aviso de tipagem global para 'api')
-    const response = yield window.api.savePassword({ nome, site, senha });
-    if (response.success) {
-        statusMessage.innerText = `Senha salva com sucesso em:\n${response.path}`;
-        inputNome.value = "";
-        inputSite.value = "";
-        inputSenha.value = "";
-    }
-}));
+
+    const dataInclusao = new Date().toLocaleString('pt-BR');
+
+    // Monta o conteúdo do arquivo .txt de forma organizada
+    const conteudoTxt = 
+`
+==============================
+MyPass - Gerenciador de Senhas
+==============================
+SITE:       ${site}
+NOME/LOGIN: ${nome}
+SENHA:      ${senha}
+CRIADO EM:  ${dataInclusao}
+==============================
+juliogaiotto.github.io/mypass/
+`;
+
+    // Cria um "Blob" com o conteúdo de texto
+    const blob = new Blob([conteudoTxt], { type: 'text/plain' });
+
+    // Gera a URL para o download
+    const url = URL.createObjectURL(blob);
+
+    // Cria o elemento de link temporário
+    const link = document.createElement('a');
+    link.href = url;
+    
+    // Define o nome do arquivo com o nome do site para facilitar a organização
+    link.download = `MyPass_${site.replace(/[^a-z0-9]/gi, '_')}.txt`;
+
+    // Executa o download
+    document.body.appendChild(link);
+    link.click();
+    
+    // Limpeza
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+});
