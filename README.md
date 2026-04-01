@@ -1,4 +1,4 @@
-<img src="assets/img/julio-perfil.png" alt="Julio Gaiotto" style="max-width:280px;"/>
+<img src="assets/img/julio-perfil.png" alt="Julio Gaiotto" width="280px" style="max-width:280px;"/>
 
 # Julio Gaiotto
 
