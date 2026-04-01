@@ -89,7 +89,7 @@ juliogaiotto.github.io/mypass/
     link.href = url;
     
     // Define o nome do arquivo com o nome do site para facilitar a organização
-    link.download = `MyPass_${site.replace(/[^a-z0-9]/gi, '_')}.txt`;
+    link.download = `MyPass.txt`;
 
     // Executa o download
     document.body.appendChild(link);
