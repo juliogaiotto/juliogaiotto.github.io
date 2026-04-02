@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Pitágoras</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding: 20px; background-color: #f4f4f9; }
+        .container { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); max-width: 400px; }
+        h2 { color: #333; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        #resultado { margin-top: 20px; font-weight: bold; color: #2c3e50; }
+
+.triangulo-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+  }
+
+  .triangulo {
+    width: 100%;
+    height: 100%;
+    background-color: #3498db;
+    /* Cria o triângulo: pontos (x y) no topo-esquerdo, base-esquerda, base-direita */
+    clip-path: polygon(0 0, 0% 100%, 100% 100%);
+  }
+
+  .label {
+    position: absolute;
+    font-weight: bold;
+    font-family: sans-serif;
+  }
+
+  /* Lado A - Vertical (Cateto) */
+  .cateto-a {
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  /* Lado B - Horizontal (Cateto) */
+  .cateto-b {
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Lado C - Diagonal (Hipotenusa) */
+  .hipotenusa-c {
+    top: 40%;
+    right: 30%;
+    /* color: rgb(66, 66, 66); /* Cor contrastante por estar sobre o triângulo */
+  }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Calculadora de Triângulo Retângulo</h2>
+    <p>Insira dois valores para encontrar o terceiro:</p>
+
+    <div class="input-group">
+        <label for="catetoA">Cateto A:</label>
+        <input type="number" id="catetoA" placeholder="Ex: 3">
+    </div>
+
+    <div class="input-group">
+        <label for="catetoB">Cateto B:</label>
+        <input type="number" id="catetoB" placeholder="Ex: 4">
+    </div>
+
+    <div class="input-group">
+        <label for="hipotenusa">Hipotenusa (C):</label>
+        <input type="number" id="hipotenusa" placeholder="Ex: 5">
+    </div>
+
+    <button onclick="calcular()">Calcular Lado Faltante</button>
+
+
+
+    <div id="resultado"></div>
+    
+    <br>
+
+    <div class="triangulo-container">
+      <div class="triangulo"></div>
+      <span class="label cateto-a">A</span>
+      <span class="label cateto-b">B</span>
+      <span class="label hipotenusa-c">C</span>
+    </div>
+</div>
+
+
+
+<script>
+    function calcular() {
+        const a = parseFloat(document.getElementById('catetoA').value);
+        const b = parseFloat(document.getElementById('catetoB').value);
+        const c = parseFloat(document.getElementById('hipotenusa').value);
+        const resDiv = document.getElementById('resultado');
+
+        // Lógica para descobrir qual lado calcular
+        if (!isNaN(a) && !isNaN(b) && isNaN(c)) {
+            // Calcular Hipotenusa: c = sqrt(a² + b²)
+            const resultado = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+            resDiv.innerHTML = `Hipotenusa (C) = ${resultado.toFixed(2)}`;
+        } 
+        else if (!isNaN(a) && !isNaN(c) && isNaN(b)) {
+            // Calcular Cateto B: b = sqrt(c² - a²)
+            if (c <= a) {
+                resDiv.innerHTML = "Erro: A hipotenusa deve ser maior que o cateto.";
+            } else {
+                const resultado = Math.sqrt(Math.pow(c, 2) - Math.pow(a, 2));
+                resDiv.innerHTML = `Cateto B = ${resultado.toFixed(2)}`;
+            }
+        } 
+        else if (!isNaN(b) && !isNaN(c) && isNaN(a)) {
+            // Calcular Cateto A: a = sqrt(c² - b²)
+            if (c <= b) {
+                resDiv.innerHTML = "Erro: A hipotenusa deve ser maior que o cateto.";
+            } else {
+                const resultado = Math.sqrt(Math.pow(c, 2) - Math.pow(b, 2));
+                resDiv.innerHTML = `Cateto A = ${resultado.toFixed(2)}`;
+            }
+        } 
+        else {
+            resDiv.innerHTML = "Por favor, preencha exatamente dois campos.";
+        }
+    }
+</script>
+
+</body>
+</html>

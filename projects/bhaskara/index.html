@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Bhaskara</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding: 50px; }
+        .container { border: 1px solid #ccc; padding: 20px; border-radius: 8px; width: 300px; }
+        input { width: 100%; margin: 10px 0; padding: 8px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; cursor: pointer; }
+        #resultado { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h3>Equação de 2º Grau</h3>
+    <p>ax² + bx + c = 0</p>
+    <input type="number" id="a" placeholder="Coeficiente a">
+    <input type="number" id="b" placeholder="Coeficiente b">
+    <input type="number" id="c" placeholder="Coeficiente c">
+    <button onclick="calcular()">Calcular Raízes</button>
+
+    <div id="resultado"></div>
+</div>
+
+<script>
+    function calcular() {
+        const a = parseFloat(document.getElementById('a').value);
+        const b = parseFloat(document.getElementById('b').value);
+        const c = parseFloat(document.getElementById('c').value);
+        const res = document.getElementById('resultado');
+
+        if (isNaN(a) || isNaN(b) || isNaN(c)) {
+            res.innerHTML = "Por favor, preencha todos os campos.";
+            return;
+        }
+
+        if (a === 0) {
+            res.innerHTML = "O valor de 'a' não pode ser 0 (não é uma equação de 2º grau).";
+            return;
+        }
+
+        // Cálculo do Delta
+        const delta = Math.pow(b, 2) - (4 * a * c);
+
+        if (delta < 0) {
+            res.innerHTML = `Delta = ${delta}. <br>A equação não possui raízes reais.`;
+        } else if (delta === 0) {
+            const x = (-b / (2 * a)).toFixed(2);
+            res.innerHTML = `Delta = 0. <br>Possui uma raiz real: x = ${x}`;
+        } else {
+            const x1 = ((-b + Math.sqrt(delta)) / (2 * a)).toFixed(2);
+            const x2 = ((-b - Math.sqrt(delta)) / (2 * a)).toFixed(2);
+            res.innerHTML = `Delta = ${delta}. <br>x' = ${x1} <br>x'' = ${x2}`;
+        }
+    }
+</script>
+
+</body>
+</html>
