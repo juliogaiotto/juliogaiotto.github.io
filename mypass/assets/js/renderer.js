@@ -57,25 +57,25 @@ document.getElementById('btnSalvar').addEventListener('click', () => {
     const senha = document.getElementById('inputSenha').value;
 
     // Validação básica
-    if (!nome || !site || !senha) {
-        alert("Por favor, preencha todos os campos e gere uma senha.");
-        return;
-    }
+    // if (!nome || !site || !senha) {
+    //     alert("Por favor, preencha todos os campos e gere uma senha.");
+    //     return;
+    // }
 
     const dataInclusao = new Date().toLocaleString('pt-BR');
 
     // Monta o conteúdo do arquivo .txt de forma organizada
     const conteudoTxt = 
 `
-==============================
-MyPass - Gerenciador de Senhas
-==============================
-SITE:       ${site}
-NOME/LOGIN: ${nome}
-SENHA:      ${senha}
-CRIADO EM:  ${dataInclusao}
-==============================
-juliogaiotto.github.io/mypass/
+====================================
+   MyPass - Gerenciador de Senhas
+====================================
+ SITE:       ${site}
+ NOME/LOGIN: ${nome}
+ SENHA:      ${senha}
+ CRIADO EM:  ${dataInclusao}
+====================================
+   juliogaiotto.github.io/mypass/
 `;
 
     // Cria um "Blob" com o conteúdo de texto
@@ -89,7 +89,7 @@ juliogaiotto.github.io/mypass/
     link.href = url;
     
     // Define o nome do arquivo com o nome do site para facilitar a organização
-    link.download = `MyPass.txt`;
+    link.download = `MyPassWord.txt`;
 
     // Executa o download
     document.body.appendChild(link);

@@ -2,24 +2,22 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>MyPass - Gerador de Senhas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name= "author" content="Julio Gaiotto">
+    <meta name= "language" content="pt-BR">
+    <meta name= "description" content="Gerador de senhas personalizadas">
+    <meta name= "keywords" content="MyPassWord, gerador de senhas, senhas personalizadas, password generator" />
+    <link rel= "icon" href="favicon.ico" type="image/x-icon">
+    <title>MyPassWord - Gerador de Senhas</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-<div class="wrapper">
 
-    <h1>MyPass</h1>
+<div class="wrapper">
+    
+    <h1><img src="assets/favicon.png" alt="MyPassWord" width="31" height="31"/> MyPassWord</h1>
     <p>Gerador de Senhas Personalizadas</p>
     <hr/>
-    <div class="form-group">
-        <label>Site / Sistema:</label>
-        <input type="text" id="inputSite" placeholder="Ex: www.github.com" class="google-sans-code">
-    </div>
-
-    <div class="form-group">
-        <label>Nome (Identificação/Login):</label>
-        <input type="text" id="inputNome" placeholder="Ex: Meu Email Principal" class="google-sans-code">
-    </div>
 
     <div class="form-group">
         <label>Opções da Senha:</label>
@@ -44,8 +42,18 @@
     </div>
 
     <div class="form-group">
+        <label>Site / Sistema:</label>
+        <input type="text" id="inputSite" placeholder="Ex: www.github.com" class="google-sans-code">
+    </div>
+
+    <div class="form-group">
+        <label>Nome (Identificação/Login):</label>
+        <input type="text" id="inputNome" placeholder="Ex: Meu Email Principal" class="google-sans-code">
+    </div>
+
+    <div class="form-group">
         <label>Senha Gerada:</label>
-        <input type="text" id="inputSenha" placeholder="Clique em Gerar Senha" readonly class="google-sans-code">
+        <input type="text" id="inputSenha" placeholder="Clique em Gerar Senha" class="google-sans-code" style="border: 1px solid #fff;">
     </div>
 
     <div class="btn-container">

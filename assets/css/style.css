@@ -22,6 +22,11 @@ body {
         "ROND" 0;    
 }
 
+.parent-grid {
+    display: grid;
+    place-items: center; /* Centraliza nos dois eixos de uma vez */
+}
+
 .margin-tp{
     margin-top: 8px;
     margin-bottom: 8px;
@@ -46,6 +51,8 @@ font-variation-settings:
 .author-image{
     margin: auto auto 10px auto;
     background-color: var(--color-green);
+    display: grid;
+    place-items: end center; /* Alinha Bottom e Centraliza horizontalmente */
 }
 
 
@@ -375,6 +382,17 @@ footer {
 @media print, screen and (max-width: 480px) {
     body {
         padding: 15px
+    }
+
+    .author-image{
+        width: 98%;
+        height: 160px;
+        margin: auto auto 10px auto;
+    }
+    .img-shadow {
+        filter: none;
+        height: 160px;
+
     }
 
     .downloads {
