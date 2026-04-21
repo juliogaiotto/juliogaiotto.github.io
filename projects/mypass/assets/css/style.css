@@ -7,6 +7,7 @@
     --background-color: #222222;
     --background-color-secondary: #282828;
     --font-color: #cccccc;
+    --gap-padrao: 16px;
 }
 
 .google-sans-code {
@@ -16,7 +17,6 @@
   font-style: normal;
   font-size: 16px;
 }
-
 
 /* Estilo inspirado no VS Code Dark Theme */
 body {
@@ -37,11 +37,11 @@ a {
 a:hover, a:focus {
     /* color: var(--color-blue-hover); */
     /* font-weight: bold; */
-    text-shadow: 2px 2px 1px rgba(25, 25, 25, 1), -2px -2px 1px rgba(25, 25, 25, 1), 1px 1px 6px rgba(200, 200, 200, 1);
+    /* text-shadow: 2px 2px 1px rgba(25, 25, 25, 1), -2px -2px 1px rgba(25, 25, 25, 1), 1px 1px 6px rgba(200, 200, 200, 1); */
 }
 
 .wrapper {    
-    max-width: 560px; /* Garante que o elemento ocupe no máximo 560px em dispositivos maiores */
+    max-width: 460px; /* Garante que o elemento ocupe no máximo 560px em dispositivos maiores */
     width: 90%; /* Garante que o elemento ocupe 90% da tela em dispositivos pequenos */
     margin: 0 auto;
     border: 1px solid #727272;
@@ -110,15 +110,81 @@ button {
     font-weight: bold;
     font-size: 14px;
 }
-
 button:hover { background-color: var(--color-blue-hover); }
 
 .btn-secondary { background-color: #333333; border: 1px solid var(--color-blue); }
-
 .btn-secondary:hover { background-color: #444444; }
+
+.btn { 
+    padding: 4px 8px;
+    background-color: #333333; 
+    border: 0px solid var(--color-blue); 
+    border-radius: 4px;
+}
+.btn:hover { background-color: #444444; }
+
+.btn-fake { 
+    padding: 4px 8px;
+    background-color: #333333; 
+    border: 0px solid #444444; 
+    border-radius: 4px;
+}
 
 #statusMessage { margin-top: 15px; font-size: 12px; color:  var(--color-green); }
 
+
+/* 1. CONTAINER HORIZONTAL (O padrão do Flex) */
+.flex-row {
+    display: flex;
+    flex-direction: row;     /* Itens um ao lado do outro */
+    flex-wrap: wrap;        /* Quebra linha se não couber */
+    gap: var(--gap-padrao);
+    justify-content: center; /* Centraliza na horizontal */
+    align-items: center;     /* Centraliza na vertical */
+}
+
+/* 2. CONTAINER VERTICAL (Empilhamento) */
+.flex-column {
+    display: flex;
+    flex-direction: column;  /* Itens um abaixo do outro */
+    gap: var(--gap-padrao);
+    justify-content: center; /* Centraliza na vertical (neste caso) */
+    align-items: center;     /* Centraliza na horizontal (neste caso) */
+}
+
+/* Estilo para os boxes de teste */
+.box {
+    /* min-width: 15rem; */
+    text-align: center;
+    flex: 1 1 auto; /* Cresce, encolhe e ajusta o tamanho base sozinho */
+}
+
+.flex-fill {
+        flex: 1 1 auto; /* Cresce, encolhe e ajusta o tamanho base sozinho */
+}
+
+/* 100% da largura: Empurra os outros para cima ou para baixo */
+.u-full {
+    flex: 1 1 100% !important;
+}
+
+/* 50% da largura: Ocupa metade do espaço disponível */
+.u-half {
+    /* 50% menos o gap para não quebrar a linha antes da hora */
+    flex: 1 1 calc(50% - var(--gap-padrao, 1.5rem));
+}
+
+/* Tamanho automático: Ocupa apenas o espaço do conteúdo ou cresce igualmente */
+.u-auto {
+    flex: 1 1 auto;
+}
+
+.pad-2{padding: 2rem;}
+
+.border{
+    border: 1px solid #555;
+    border-radius: 8px;
+}
 
 /* ------------------------------------------------------------------ */
 @media print, screen and (max-width: 960px) {

@@ -9,6 +9,7 @@
     <meta name= "keywords" content="MyPassWord, gerador de senhas, senhas personalizadas, password generator" />
     <link rel= "icon" href="favicon.ico" type="image/x-icon">
     <title>MyPassWord - Gerador de Senhas</title>
+    <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -17,15 +18,20 @@
     
     <h1><img src="assets/favicon.png" alt="MyPassWord" width="31" height="31"/> MyPassWord</h1>
     <p>Gerador de Senhas Personalizadas</p>
+    
     <hr/>
 
     <div class="form-group">
         <label>Opções da Senha:</label>
-        <div class="checkbox-group">
-            <label><input type="checkbox" id="chkUpper" checked> Letras Maiúsculas (A-Z)</label>
-            <label><input type="checkbox" id="chkLower" checked> Letras Minúsculas (a-z)</label>
-            <label><input type="checkbox" id="chkNum" checked> Números (0-9)</label>
-            <label><input type="checkbox" id="chkSpec" checked> Caracteres Especiais (!@#$%)</label>
+        <div class="checkbox-group flex-row">
+            <div class="box">
+                <label><input type="checkbox" id="chkUpper" checked> Letras Maiúsculas (A-Z)</label>
+                <label><input type="checkbox" id="chkLower" checked> Letras Minúsculas (a-z)</label>
+            </div>
+            <div class="box">
+                <label><input type="checkbox" id="chkNum" checked> Números (0-9)</label>
+                <label><input type="checkbox" id="chkSpec" checked> Caracteres Especiais (!@#$%)</label>
+            </div>
         </div>
     </div>
 
@@ -53,22 +59,32 @@
 
     <div class="form-group">
         <label>Senha Gerada:</label>
-        <input type="text" id="inputSenha" placeholder="Clique em Gerar Senha" class="google-sans-code" style="border: 1px solid #fff;">
+        <input type="text" id="inputSenha" placeholder="Clique em Gerar Senha" class="google-sans-code" style="border: 1px solid #4CAF50;">
     </div>
 
     <div class="btn-container">
-        <button id="btnGerar" class="">🗝️ Gerar Senha</button>
-        <button id="btnSalvar">💾 Download da Senha</button>
+        <button id="btnGerar">🗝️ Gerar Senha</button>
+        <button id="btnSalvar" class="btn-secondary">💾 Download da Senha</button>
     </div>
 
     <div id="statusMessage"></div>
 
-    <div>
-        <p class="view">
-            <a href="../../index.html" onclick="history.back(); return false;">Voltar à Página anterior</a>
+    <footer class="flex-row">
+        <div class="box">            
+             <a  class="btn" href="https://juliogaiotto.github.io/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-square-github"></i> Meu GitHub</a>
+        </div>
+        <div class="box">
+            <a class="btn" href="https://link.mercadopago.com.br/juliogaiotto"><i class="fa-solid fa-mug-hot"></i> Apoie-me</a>
             <!-- <a href="https://juliogaiotto.github.io/"><small>↩ Voltar para o perfil de Julio Gaiotto</small></a> -->
-        </p>
-    </div>
+        </div>
+        <div class="box">
+        <span class="btn-fake">
+            <small>
+                Desenvolvido por <a href="https://juliogaiotto.github.io/" target="_blank" rel="noopener noreferrer">Julio Gaiotto</a> | &copy; 2024
+            </small>
+        </span>
+        </div>
+    </footer>
 </div>
 
     <script src="assets/js/script.js"></script>
