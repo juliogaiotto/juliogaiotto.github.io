@@ -1,0 +1,53 @@
+<input type="text" id="userName" placeholder="Seu Nome">
+<input type="text" id="userSite" placeholder="Seu Site">
+<input type="email" id="userEmail" placeholder="Seu E-mail">
+<br>
+<button id="saveBtn">Salvar Dados</button>
+<button id="loadBtn">Carregar Dados</button>
+
+<script>
+// Usamos DOMContentLoaded para garantir que o HTML carregou totalmente
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const nameInput = document.getElementById('userName');
+    const siteInput = document.getElementById('userSite');
+    const emailInput = document.getElementById('userEmail');
+    const saveBtn = document.getElementById('saveBtn');
+    const loadBtn = document.getElementById('loadBtn');
+
+    // Função de Carregar
+    const loadData = () => {
+        const savedData = localStorage.getItem('userProfile');
+        if (savedData) {
+            const data = JSON.parse(savedData);
+            nameInput.value = data.name || "";
+            siteInput.value = data.site || "";
+            emailInput.value = data.email || "";
+            console.log("Dados carregados do localStorage");
+        } else {
+            alert("Nenhum dado encontrado no navegador.");
+        }
+    };
+
+    // Evento do Botão Salvar
+    saveBtn.addEventListener('click', () => {
+        const userData = {
+            name: nameInput.value,
+            site: siteInput.value,
+            email: emailInput.value
+        };
+        localStorage.setItem('userProfile', JSON.stringify(userData));
+        alert('Salvo!');
+        
+        // Limpa os campos após salvar
+        nameInput.value = "";
+        siteInput.value = "";
+        emailInput.value = "";
+    });
+
+    // Evento do Botão Carregar
+    loadBtn.addEventListener('click', loadData);
+});
+
+</script>
+

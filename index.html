@@ -27,102 +27,76 @@
 
 <body>
     <div class="wrapper">
-        <header>            
-
-            <div class="author-image">
-                <img class="img-shadow" src="assets/img/julio-perfil.png" alt="Julio Gaiotto" />
+        <header class="flex-collumn card">
+            <div class="flex-box flex-full center">
+                <img class="img-shadow" style="width: 200px; height: 200px;" src="assets/img/julio-perfil.png" alt="Julio Gaiotto" />
+                <h1><b>Julio Gaiotto</b></h1>
             </div>
-            <h1><a href="https://github.com/juliogaiotto"><b>Julio Gaiotto</b></a></h1>
-            <p><i class="fa fa-briefcase fa-fw w3-large color-darkgreen"></i> 
-                Desenvolvedor | Suporte TI
-            </p>
-            <p><i class="fa fa-home fa-fw w3-large color-darkgreen"></i> 
-                São Paulo, Brazil
-            </p>
-            <p><i class="fa fa-envelope fa-fw w3-large color-darkgreen"></i> 
-                <span id="contato-email"></span>
-            </p>
-            <p>
-                <a href="https://www.linkedin.com/in/juliogaiotto/" target="_blank">
-                    <i class="fa fa-linkedin fa-fw w3-large color-darkgreen"></i>
-                    /in/juliogaiotto/
-                </a>
-            </p>
-            <!-- <p><i class="fa fa-github fa-fw "></i>  -->
-                <a href="https://github.com/juliogaiotto" target="_blank">
-                    <i class="fa-brands fa-github fa-fw w3-large color-darkgreen"></i>
-                    github.com/juliogaiotto/</a>
-            </p>
-
-            <hr />
-            
-            <div class="parent-grid">
-                <!-- <h5><b>Projetos em Destaque</b></h5> -->
-                <ul class="tablex">
-                    <li>
-                        <a href="projects/mypass/">Ver projeto <strong>MyPassWord</strong><br>
-                            <small>Gerador de Senhas Personalizadas</small></a>
+            <!-- <div class="flex-box ">
+            </div> -->
+            <div    class="flex-box flex-full">
+                <ul>
+                    <li><i class="fa-solid fa-laptop-code"></i> Desenvolvedor de Software</li>
+                    <li><i class="fa-solid fa-gears"></i> Suporte Técnico</li>
+                    <li><i class="fa-regular fa-house"></i> São Paulo, Brazil</li>
+                    <li><i class="fa-regular fa-envelope"></i> <span id="contato-email"></span></li>
+                    <li><a href="https://www.linkedin.com/in/juliogaiotto/" target="_blank">
+                        <i class="fa-brands fa-square-linkedin"></i> /juliogaiotto</a>
                     </li>
-                    <!-- <li>
-                        <a href="projects/bhaskara/">Ver projeto <strong>Bhaskara</strong><br>
-                            <small>Calculadora de Equações de 2º Grau</small></a>
-                    </li> -->
-                    <!-- <li>
-                        <a href="projects/pitagoras/">Ver projeto <strong>Pitágoras</strong><br>
-                            <small>Calculadora de Triângulo Retângulo</small></a>
-                    </li> -->
+                    <li><a href="https://github.com/juliogaiotto" target="_blank">
+                            <i class="fa-brands fa-github"></i> github.com/juliogaiotto/</a>
+                    </li>
                 </ul>
-            </div>    
-            
-            <br>
-            <!--             
-            <ul class="downloads">
-                <li><a href="mypass/index.html">App<strong>MyPass</strong></a></li>
-                <li><a href="https://github.com/pages-themes/minimal/tarball/master">Download <strong>ZIP File</strong></a></li>
-                <li><a href="https://github.com/pages-themes/minimal">Ver no <strong>GitHub</strong></a></li>
-            </ul> 
-            -->
-
+            </div>
         </header>
-
+        
         <section>
-            <div class="w3-container w3-card w3-white">
-                <h2 class="">
-                    <i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge color-darkgreen"></i>Experiência Profissional
-                </h2>
+            <div class="flex-row card">
+                <div class="flex-box flex-full">
+                    <h2><i class="fa-solid fa-code"></i> Projetos em Destaque</h2>
+                </div>
+                <div class="flex-box flex-card flex-3">
+                    <a href="projects/mypass/"><strong><i class="fa-solid fa-key"></i> MyPassWord</strong><br>
+                        <small>Gerador de Senhas Personalizadas</small></a>
+                    </div>
+                <div class="flex-box flex-3">&nbsp;
+                    <!-- <a href="projects/bhaskara/"><i class="fa-brands fa-square-js"></i><strong>Bhaskara</strong><br>
+                        <small>Calculadora de Equações de 2º Grau</small></a> -->
+                </div>
+                <div class="flex-box flex-3">&nbsp;
+                    <!-- <a href="projects/pitagoras/"><i class="fa-solid fa-ruler"></i><strong>Pitágoras</strong><br>
+                        <small>Calculadora de Triângulo Retângulo</small></a> -->
+                </div>
+            </div>
 
-                <div class="w3-container">                            
-                    <p>Com mais de 7 anos de jornada na área de TI, minha carreira é marcada pela agilidade e do 
-                        desenvolvimento de software. Acredito que o suporte de alto nível não deve apenas conter 
-                        os problemas, mas sim construir ferramentas que evitem que eles comecem. Minha experiência
+            <hr>
+
+            <div class="flex-row">
+                <div class="flex-box card flex-full">                            
+                    <h2><i class="fa-solid fa-briefcase"></i> Experiência Profissional</h2>                    
+                    <p>Com mais de 8 anos de jornada na área de TI, acredito que o suporte de alto nível não deve apenas conter 
+                        os problemas, mas sim construir softwares que evitem que eles comecem. Minha experiência
                         transita entre o atendimento crítico de sistemas e a reestruturação de processos de suporte.</p>
+
                     <p>Hoje, utilizo meu conhecimento em desenvolvimento de scripts e softwares para transformar 
                         tarefas manuais em fluxos automatizados, garantindo que a tecnologia trabalhe a favor do 
-                        negócio. Sou graduado em Análise e Desenvolvimento de Sistemas e busco constantemente 
+                        negócio. Sou graduado em Análise e Desenvolvimento de Sistemas e Técnico em Processamento de Dados. Busco constantemente 
                         converter desafios técnicos em eficiência operacional.</p>
                 </div>
             </div>  
             <br>
-            <div class="w3-container w3-card w3-white">
-                <h2 class="">
-                    <i class="fa fa-award fa-fw w3-margin-right w3-xxlarge color-darkgreen"></i>Educação</h2>
-                <div class="w3-container">
-                    <h5 class="w3-opacity"><b>Bacharel em Análise e Desenvolvimento de Sistemas</b> | 
-                        <i class="fa-regular fa-calendar fa-fw"></i> 2025<h5>                    
-                    <hr>
-                </div>
-                <div class="w3-container">
-                    <h5 class="w3-opacity"><b>Ensino Técnico em Processamento de Dados</b> | 
-                        <i class="fa-regular fa-calendar fa-fw"></i> 1998</h5>
-                </div>
+            <div class="flex-row">
+                <div class="flex-box card flex-full">  
+                    <h2><i class="fa-solid fa-award"></i> Educação</h2>                
+                    <h6 class="w3-opacity"><b>Bacharel em Análise e Desenvolvimento de Sistemas</b> | <i class="fa-regular fa-calendar-days"></i> 2025</h6>                    
+                    <h6 class="w3-opacity"><b>Ensino Técnico em Processamento de Dados</b> | <i class="fa-regular fa-calendar-days"></i> 1998</h6>
+                </div>            
             </div>
 
         </section>
 
-        <footer class="parent-grid">
-            <hr />      
-            <p><small><a href="en-us.html"><i class="fa-solid fa-language fa-fw"></i> View in English</a></small></p>
-
+        <footer class="flex-collumn center">
+            <hr />
             <p><small><a href="https://translate.google.com/translate?sl=pt-br&tl=en&u=juliogaiotto.github.io" target="_blank">
                 <i class="fa-solid fa-language fa-fw"></i> Translate with Google Translate</a></small></p> 
         </footer>
