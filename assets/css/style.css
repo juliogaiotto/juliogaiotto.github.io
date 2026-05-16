@@ -114,7 +114,7 @@ a:hover{
     border-color: var(--color-accent); 
 }
 p, ul, ol, table, pre, dl {
-    margin: 0 0 1rem;
+    margin: 0 0 1rem 0;
 }
 
 h1, h2, h3 {
@@ -222,7 +222,7 @@ header {
 }
 ul {
     list-style: none;
-    padding: 0
+    padding: 0;
 }
 li{
     margin: 0.5rem 0;
@@ -336,22 +336,23 @@ ul.tablex {
     flex-direction: row;     /* Itens um ao lado do outro */
     flex-wrap: wrap;        /* Quebra linha se não couber */
     gap: var(--gap-padrao);
-    justify-content: center; /* Centraliza na horizontal */
-    align-items: center;     /* Centraliza na vertical */
+    justify-content: center; /* Alinhamento na horizontal */
+    align-items: flex-start; /* Alinhamento na vertical */
 }
 
 /* 2. CONTAINER VERTICAL (Empilhamento) */
 .flex-column {
     display: flex;
+    /* min-height: calc(100svh - 3rem); */
     flex-direction: column;  /* Itens um abaixo do outro */
     gap: var(--gap-padrao);
-    justify-content: center; /* Centraliza na vertical (neste caso) */
+    justify-content: flex-start; /* Centraliza na vertical (neste caso) */
     align-items: center;     /* Centraliza na horizontal (neste caso) */
 }
 
-/* Estilo para os boxes de teste */
+/* Estilo para os boxes*/
 .flex-box {
-    min-width: 10rem;
+    min-width: 20rem;
     flex: 1 1 auto; /* Cresce, encolhe e ajusta o tamanho base sozinho */
 }
 
@@ -387,7 +388,7 @@ ul.tablex {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-
+.h-80 { min-height: 80svh; }
 
 /* ---------------------------------------------------------------- */
 section {
@@ -442,7 +443,7 @@ footer {
     header ul {
         position: absolute;
         right: 50px;
-        top: 52px
+        top: 52px;
     }
 }
 

@@ -1,0 +1,986 @@
+/*  
+ * {nukleo.dev} — Stylesheet
+ *
+ *  Prioridade de layers é sempre do menor (primeiro) para o maior (ultimo):
+ *
+ *      1. variables    — É puramente armazenamento de dados. :root, --colors, --types, --shadowns, etc.
+ *                    
+ *      2. tags         — Define as configurações diretamente nas Tags html (main, section, header, footer, etc) and Reduced-motion
+ *                    
+ *      3. layout       — Layout global, classes de grid e flexbox que definem colunas e containers.
+ *                      Esta camada cuida da estrutura do site, definindo como os grandes blocos se posicionam na tela.
+ *
+ *      4. components   — Aqui os componentes devem ser independentes e não devem interferir no layout global.
+ *
+ *      5. utilities    — São classes de propósito único que servem para ajustes finos. (Exemplo: .n-hide-mobile, .n-text-center)
+ *
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Text:ital@0;1&display=swap');
+/* ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ */
+/* Define a ordem dos Layers */
+@layer variables, tags, layout, components, utilities;
+
+/* ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ */
+/* 1. Variables */
+@layer variables {
+    :root {
+        /* Configuração para o navegador entender os dois esquemas */
+        color-scheme: light dark;
+
+        /* ── Cores oklch: [L]ightness [C]hroma [H]ue ──
+         * [L]ightness: (Luminosidade) Vai de 0% (preto total) a 100% (branco puro).
+         * [C]hroma: (Saturação/Intensidade). Define o quão "colorida" a cor é.
+         * [H]ue: Matiz, a cor propriamente dita. Representado em graus em um círculo cromático (0 a 360).
+         */
+        /* ── Paleta de Cores Primitivas ── */
+        --gray-900: oklch(9.5% 0.007 260);
+        --gray-850: oklch(12% 0.007 260);
+        --gray-800: oklch(15% 0.007 260);
+        --gray-700: oklch(20% 0.006 260);
+        --gray-600: oklch(30% 0.005 260);
+        --gray-500: oklch(42% 0.005 260);
+        --gray-400: oklch(55% 0.005 260);
+        --gray-300: oklch(70% 0.005 260);
+        --gray-200: oklch(85% 0.005 260);
+        --gray-100: oklch(92% 0.003 260);
+        --gray-50: oklch(97% 0.002 260);
+        --black: oklch(5.5% 0.005 260);
+        --white: oklch(98% 0.002 260);
+
+        --cinza: #3e5965;
+        --lime: oklch(84% 0.17 128);
+        --lime-muted: oklch(68% 0.11 128);
+        --lime-dim: light-dark(oklch(90% 0.06 155), oklch(28% 0.06 175));
+        --lime-wash: light-dark(oklch(96% 0.025 155), oklch(18% 0.05 175));
+
+        --red: light-dark(oklch(55% 0.18 25), oklch(68% 0.15 25));
+        --red-dim: light-dark(oklch(95% 0.025 25), oklch(22% 0.05 25));
+        --green: light-dark(oklch(45% 0.14 155), oklch(74% 0.15 155));
+        --orange: light-dark(oklch(75.213% 0.17858 58.738), oklch(82.9% 0.09423 71.099));
+        --yellow: light-dark(oklch(90.669% 0.18812 99.48), oklch(91.843% 0.09858 101.864));
+        --cian: light-dark(oklch(73.385% 0.10855 195.092), oklch(86.093% 0.09997 195.511));
+
+        --error: light-dark(oklch(60.258% 0.23509 26.896), oklch(68% 0.15 25));
+        --success: light-dark(oklch(45% 0.14 155), oklch(74% 0.15 155));
+        --warning: light-dark(oklch(75.213% 0.17858 58.738), oklch(82.9% 0.09423 71.099));
+        --attention: light-dark(oklch(90.669% 0.18812 99.48), oklch(91.843% 0.09858 101.864));
+        --info: light-dark(oklch(73.385% 0.10855 195.092), oklch(86.093% 0.09997 195.511));
+
+        --brand-green: ligth-dark(oklch(31.763% 0.01743 202.25), oklch(59.798% 0.05146 173.754));
+        --brand-green-jade: ligth-dark(oklch(51.204% 0.07522 195.105), oklch(68.389% 0.08515 195.398));
+
+        --cream: ligth-dark(oklch(90% 0.026 92), oklch(92.905% 0.00924 106.76));
+        --blue-gray: oklch(46.173% 0.04283 267.739);
+        --deep-graphite: oklch(28.823% 0.02214 277.506);
+        --obsidiana: oklch(22% 0.00638 214.624);
+
+        /* ── Semantica das Cores ── */
+        --color-bg: light-dark(var(--white), var(--gray-900));
+        --color-bg-inv: light-dark(var(--gray-700), var(--gray-200));
+        --color-surface: light-dark(var(--gray-50), var(--gray-850));
+        --color-raised: light-dark(var(--gray-100), var(--gray-750));
+        --color-border: light-dark(var(--gray-200), var(--gray-650));
+        --color-border-subtle: light-dark(var(--gray-100), var(--gray-750));
+        --color-text: light-dark(var(--gray-900), var(--white));
+        --color-text-inv: light-dark(var(--white), var(--gray-900));
+        --color-text-2: light-dark(var(--gray-500), var(--gray-300));
+        --color-text-3: light-dark(var(--gray-400), var(--gray-400));
+        --color-accent: light-dark(oklch(38% 0.1 168), oklch(76% 0.13 175));
+        --color-accent-inv: light-dark(oklch(76% 0.13 175), oklch(43.762% 0.11638 151.188));
+        --color-accent-muted: light-dark(oklch(32% 0.07 168), oklch(60% 0.09 175));
+        --color-error: var(--error);
+        --color-success: var(--success);
+        --color-warning: var(--warning);
+        --color-attention: var(--attention);
+        --color-info: var(--info);
+        --color-white: var(--white);
+        --color-black: var(--black);
+
+        /* ── Tipos/Textos ── */
+        --font-serif: "DM Serif Text", Georgia, "Times New Roman", serif;
+        --font-sans: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        --font-mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+        --text-size: 10px;
+        --text-xs: clamp(1.1rem, 1.05rem + 0.22vw, 1.2rem);
+        --text-sm: clamp(1.3rem, 1.25rem + 0.26vw, 1.4rem);
+        --text-base: clamp(1.5rem, 1.4rem + 0.3vw, 1.7rem);
+        --text-lg: clamp(1.8rem, 1.7rem + 0.5vw, 2.1rem);
+        --text-xl: clamp(2.2rem, 2rem + 1.2vw, 2.8rem);
+        --text-2x: clamp(2.8rem, 2.4rem + 2vw, 4rem);
+        --text-3x: clamp(3.6rem, 2.8rem + 4vw, 6rem);
+        --text-4x: clamp(4.4rem, 3.2rem + 6vw, 8rem);
+
+        /* ── Espaços ── */
+        --sp-3xs: clamp(0.4rem, 0.35rem + 0.24vw, 0.6rem);
+        --sp-2xs: clamp(0.6rem, 0.53rem + 0.35vw, 0.8rem);
+        --sp-xs: clamp(0.8rem, 0.7rem + 0.45vw, 1.2rem);
+        --sp-s: clamp(1.2rem, 1.05rem + 0.72vw, 1.6rem);
+        --sp-m: clamp(1.6rem, 1.4rem + 0.96vw, 2.4rem);
+        --sp-l: clamp(2.4rem, 2.1rem + 1.6vw, 3.6rem);
+        --sp-xl: clamp(3.2rem, 2.7rem + 2.4vw, 4.8rem);
+        --sp-2xl: clamp(4.8rem, 4rem + 4vw, 7.2rem);
+        --sp-3xl: clamp(5.6rem, 4.4rem + 6vw, 9.6rem);
+        --sp-4xl: clamp(7.2rem, 5.6rem + 8vw, 12rem);
+
+        /* ── Outros ── */
+        --radius-s: 6px;
+        --radius-m: 8px;
+        --radius-l: 12px;
+        --radius-xl: 16px;
+        --radius-pill: 50%;
+        --min-h: 6rem;
+        --max-w: 120rem;
+        --gap: var(--sp-m);
+        --gutter: var(--sp-m);
+        --ease: cubic-bezier(.16, 1, .3, 1);
+        --dur: 180ms;
+
+        /* Nível 1: Elementos baixos (botões, pequenos cards) */
+        --shadow-sm: 1px 1px 1px rgba(40, 40, 40, 0.3), 2px 2px 6px rgba(40, 40, 40, 0.8);
+
+        /* Nível 2: Elementos médios (dropdowns, cards flutuantes) */
+        --shadow-md: 5px 7px 10px rgba(68, 55, 46, 0.1), 3px 4px 4px rgba(68, 55, 46, 0.6), 8px 10px 22px rgba(68, 55, 46, 0.2);
+
+        /* Nível 3: Elementos altos (Modais, Overlays) */
+        --shadow-lg: 2px 19px 38px rgba(29, 23, 16, 0.24), 2px 15px 12px rgba(29, 23, 16, 0.3), 2px 5px 8px rgba(0, 0, 0, 0.3);
+
+        /* Adiciona uma transição suave para as cores de fundo e texto */
+        transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+
+    }
+
+    /* root fim */
+
+    [data-theme="light"] {
+        color-scheme: light;
+
+        .n-error {
+            color: var(--color-text-inv) !important;
+            background: var(--color-error) !important;
+        }
+
+        .n-success {
+            color: var(--color-text-inv) !important;
+            background: var(--color-success) !important;
+        }
+
+        .n-warning {
+            color: var(--color-text) !important;
+            background: var(--color-warning) !important;
+        }
+
+        .n-attention {
+            color: var(--color-text) !important;
+            background: var(--color-attention) !important;
+        }
+
+        .n-info {
+            color: var(--color-text) !important;
+            background: var(--color-info) !important;
+        }
+
+        & .icon-sun {
+            display: none;
+        }
+
+        & .icon-moon {
+            display: block;
+        }
+    }
+
+    [data-theme="dark"] {
+        color-scheme: dark;
+
+        .n-error {
+            color: var(--color-text) !important;
+            background: var(--color-error) !important;
+        }
+
+        .n-success {
+            color: var(--color-text) !important;
+            background: var(--color-success) !important;
+        }
+
+        .n-warning {
+            color: var(--color-text-inv) !important;
+            background: var(--color-warning) !important;
+        }
+
+        .n-attention {
+            color: var(--color-text-inv) !important;
+            background: var(--color-attention) !important;
+        }
+
+        .n-info {
+            color: var(--color-text-inv) !important;
+            background: var(--color-info) !important;
+        }
+
+        & .icon-sun {
+            display: block;
+        }
+
+        & .icon-moon {
+            display: none;
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(-100%);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .n-slideIn {
+        animation: slideIn 0.8s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0.1;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .n-fadeIn {
+        animation: fadeIn 0.8s ease-in-out forwards;
+    }
+
+}
+
+/* ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ */
+/* 2. Tags HTML */
+@layer tags {
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        font-size: var(--font-size, 10px);
+        hanging-punctuation: first last;
+        color-scheme: light dark;
+        scroll-behavior: smooth;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    body {
+        font-family: var(--font-sans);
+        font-size: var(--text-base);
+        color: var(--color-text);
+        background-color: var(--color-bg);
+        margin: 0;
+        min-height: 100dvh;
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+        color: var(--color-accent);
+        background-color: var(--color-bg);
+    }
+
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    main,
+    menu,
+    nav,
+    section {
+        display: block
+    }
+
+    summary {
+        display: list-item
+    }
+
+    audio,
+    canvas,
+    progress,
+    video {
+        display: inline-block
+    }
+
+    progress {
+        vertical-align: baseline
+    }
+
+    audio:not([controls]) {
+        display: none;
+        height: 0
+    }
+
+    [hidden],
+    template {
+        display: none;
+    }
+
+    a {
+        color: inherit;
+        text-decoration-skip-ink: auto;
+        /* 
+        &:hover,
+        &:focus-visible {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 4px;
+        }
+
+        &:active {
+            opacity: 0.7;
+        } */
+    }
+
+    sub,
+    sup {
+        font-size: var(--text-xs);
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+    }
+
+    sub {
+        bottom: -0.25em;
+    }
+
+    sup {
+        top: -0.5em;
+    }
+
+    svg:not(:root) {
+        overflow: hidden;
+    }
+
+    ul,
+    ol,
+    li {
+        list-style: none;
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    li {
+        margin: 0.5rem 0;
+    }
+
+    img,
+    picture,
+    video,
+    canvas,
+    svg {
+        display: block;
+        max-width: 100%;
+        border-style: none;
+    }
+
+    input,
+    button,
+    textarea,
+    select {
+        font: inherit;
+        color: inherit;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: var(--font-sans);
+        margin: 0.5rem 0;
+        font-weight: 600;
+    }
+
+    p {
+        font-size: var(--text-0)
+    }
+
+    h1 {
+        font-size: var(--text-6)
+    }
+
+    h2 {
+        font-size: var(--text-5)
+    }
+
+    h3 {
+        font-size: var(--text-4)
+    }
+
+    h4 {
+        font-size: var(--text-3)
+    }
+
+    h5 {
+        font-size: var(--text-2)
+    }
+
+    h6 {
+        font-size: var(--text-1)
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        overflow-wrap: break-word;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        text-wrap: balance;
+    }
+
+    p,
+    h5,
+    h6 {
+        text-wrap: pretty;
+    }
+
+    small {
+        font-size: var(--text-xs);
+        margin-top: -0.3em;
+        /* display: inline-block; */
+    }
+
+    b,
+    strong {
+        font-weight: bolder;
+        font-weight: 800;
+    }
+
+    code,
+    kbd,
+    pre,
+    samp {
+        font-family: var(--font-mono), monospace;
+        font-size: var(--text-sm);
+    }
+
+    hr {
+        box-sizing: content-box;
+        height: 0;
+        overflow: visible;
+    }
+
+    header,
+    main,
+    footer {
+        width: 100%;
+    }
+
+    footer {
+        margin: 0;
+        margin-top: 2rem;
+        padding: 1rem;
+        background-color: var(--color-bg-inv)
+    }
+
+   section {
+        /* clamp(MÍNIMO, IDEAL, MÁXIMO) */
+        /* width: clamp(32rem, 120rem, 95vw); */
+        width: clamp(32rem, 120rem, 150rem);        
+        margin: 0 auto;
+        margin-inline: auto; /* centreliza horizontalmente */
+    }
+
+    button,
+    [type=button],
+    [type=reset],
+    [type=submit] {
+        -webkit-appearance: button
+    }
+
+    button::-moz-focus-inner,
+    [type=button]::-moz-focus-inner,
+    [type=reset]::-moz-focus-inner,
+    [type=submit]::-moz-focus-inner {
+        border-style: none;
+        padding: 0;
+    }
+
+    button:-moz-focusring,
+    [type=button]:-moz-focusring,
+    [type=reset]:-moz-focusring,
+    [type=submit]:-moz-focusring {
+        outline: 1px dotted ButtonText;
+    }
+
+    /* Remove o outline padrão feio para cliques de mouse */
+    button:focus {
+        outline: none;
+    }
+
+    /* Aplica um destaque elegante apenas para quem usa teclado */
+    button:focus-visible {
+        outline: 2px solid var(--color-border);
+        /* Usando sua cor Dracula */
+        outline-offset: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+        *,
+        html,
+        *::before,
+        *::after {
+            scroll-behavior: auto;
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}
+
+/* ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ */
+/* 3. Layout */
+@layer layout {
+    .wrapper {
+        width: 120rem;
+        margin: 0 auto;
+    }
+
+    .menu-list {
+        display: flex;
+        gap: var(--sp-m);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        /* Isso garante que a lista tente ficar no centro real */
+        flex: 1;
+        justify-content: center;
+    }
+
+    .n-fadeIn {
+        animation: fadeIn 0.8s ease-in-out forwards;
+    }
+
+    .font-sans {
+        font-family: var(--font-sans);
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .font-mono {
+        font-family: var(--font-mono);
+        font-optical-sizing: auto;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .n-box-shadow {
+        box-shadow: var(--shadow-md) !important;
+    }
+
+    .n-color-invert {
+        color: var(--color-primary-invert) !important;
+        background-color: var(--color-secondary-invert) !important;
+    }
+
+    .n-logo-text {
+        font-family: var(--font-mono);
+        font-weight: 400;
+        font-style: normal;
+        font-size: var(--text-sm);
+        text-decoration: none !important;
+        letter-spacing: 0.03rem !important;
+        color: var(--color-text-inv);
+        transition: color 0.3s ease-in-out, font-weight 0.2s ease-in-out;
+
+        &:hover {
+            font-weight: 800 !important;
+        }
+
+        &::before {
+            content: "{";
+            margin-right: 0.5rem;
+            /* Espaço entre a chave e o texto */
+            color: var(--color-accent-inv);
+        }
+
+        &::after {
+            content: "}";
+            margin-left: 0.5rem;
+            color: var(--color-accent-inv);
+        }
+
+        & span {
+            color: var(--color-accent-inv);
+        }
+    }
+
+    [class*="icon-"] {
+        color: var(--color-accent-inv);
+    }
+
+    .logo,
+    .theme-toggle {
+        /* Define uma base flexível igual para ambos para não "empurrar" o menu do centro */
+        flex: 1;
+    }
+
+    .theme-toggle {
+        display: flex;
+        justify-content: flex-end;
+        /* Alinha o conteúdo do botão/container à direita */
+    }
+
+    nav {
+        z-index: 999;
+        background-color: var(--color-bg-inv);
+        color: var(--color-text-inv);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: var(--gap);
+    }
+
+    .n-sticky-top {
+        position: sticky;
+        top: 0;
+        left: 0;
+    }
+
+    #typography,
+    #components,
+    #forms {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+        scroll-margin-top: calc(var(--min-h) + 1rem);
+    }
+
+    nav .n-nav-container {
+        height: auto;
+        min-height: var(--min-h);
+        width: var(--max-w);
+        display: flex;
+        flex-flow: row wrap;
+        background-color: var(--color-bg-inv);
+        justify-content: space-between;
+        align-items: center;
+        padding-inline: var(--gutter);
+        gap: var(--gap);
+        margin: 0;
+
+        & ul {
+            display: flex;
+            flex-flow: row wrap;
+            background-color: inherit;
+            /* padding-inline: var(--gutter); */
+            gap: var(--gap);
+            margin: 0;
+        }
+    }
+
+    .n-menu-item {
+        font-family: var(--font-mono);
+        font-weight: 300;
+        font-style: normal;
+        font-size: var(--text-sm);
+        letter-spacing: 0.03em;
+        color: var(--color-text-inv);
+        padding: 0.6rem 1rem;
+
+        &>a,
+        &>button {
+            text-decoration: none;
+            color: var(--color-text-inv);
+            transition: color 0.3s ease, font-weight 0.2s ease-in-out;
+        }
+
+        &>a:hover {
+            font-weight: 800;
+            color: var(--color-text-inv) !important;
+            /* background-color: var(--blue-gray); */
+            /* border-radius: 6px; */
+            /* padding: 0.6rem 1rem;   */
+            display: inline-block;
+        }
+    }
+
+    .n-menu-logo {
+        margin-top: 0.5rem;
+        max-width: 128px;
+        height: auto;
+        transition: transform 0.3s ease;
+        box-shadow: var(--shadow-md);
+    }
+
+
+
+    /* ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ */
+    dialog {
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-m);
+        padding: var(--sp-l);
+        background: var(--color-surface);
+        /* Cor de fundo do card */
+        color: var(--color-text);
+        max-width: 50rem;
+    }
+
+    /* O fundo escurecido atrás do modal */
+    dialog::backdrop {
+        background: oklch(0% 0 0 / 0.6);
+        backdrop-filter: blur(5px);
+    }
+
+    details {
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-s);
+        padding: var(--sp-s);
+    }
+
+    summary {
+        cursor: pointer;
+        font-weight: bold;
+        padding: var(--sp-xs);
+    }
+
+    /* Quando o accordion está aberto */
+    details[open] summary {
+        margin-bottom: var(--sp-s);
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    /* ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ */
+    /* ── CLASSES DE UTILIDADE PARA FLEXBOX ── */
+    /* 1. CONTAINER HORIZONTAL (O padrão do Flex) */
+    .n-flex-row {
+        display: flex;
+        flex-direction: row;
+        /* Itens um ao lado do outro */
+        flex-wrap: wrap;
+        /* Quebra linha se não couber */
+        gap: var(--gap);
+        justify-content: center;
+        /* Centraliza na horizontal */
+        align-items: center;
+        /* Centraliza na vertical */
+        z-index: 1;
+    }
+
+    /* 2. CONTAINER VERTICAL (Empilhamento) */
+    .n-flex-column {
+        display: flex;
+        flex-direction: column;
+        /* Itens um abaixo do outro */
+        gap: var(--gap);
+        justify-content: center;
+        /* Centraliza na vertical (neste caso) */
+        align-items: center;
+        /* Centraliza na horizontal (neste caso) */
+        z-index: 1;
+    }
+
+    /* Estilo para os boxes */
+    .n-flex-box {
+        min-width: 10rem;
+        flex: 1 1 auto;
+        /* Cresce, encolhe e ajusta o tamanho base sozinho */
+        z-index: 2;
+    }
+
+    /* 100% da largura: Empurra os outros box para cima ou para baixo */
+    .n-flex-full {
+        flex: 1 1 100% !important;
+    }
+
+    /* 50% da largura: Ocupa metade do espaço disponível */
+    .n-flex-2 {
+        /* 50% menos o gap para não quebrar a linha antes da hora */
+        flex: 1 1 calc(50% - var(--gap, 1.5rem));
+    }
+
+    /* 33% da largura: Ocupa um terço do espaço disponível */
+    .n-flex-3 {
+        /* 33% menos o gap para não quebrar a linha antes da hora */
+        flex: 1 1 calc(33.33% - var(--gap, 1.5rem));
+    }
+
+    .n-flex-card {
+        background-color: var(--color-card-bg, #fafbfc);
+        border: 1px solid var(--color-border, #d1d1d1);
+        border-radius: 8px;
+        padding: 1rem;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
+        &:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Move apenas a "camada" do card, sem afetar o resto */
+    }
+
+    .card {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        /* Move apenas a "camada" do card, sem afetar o resto */
+    }
+
+    /* ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ */
+    .n-card {
+        margin: 0 auto;
+        /* Centraliza o card horizontalmente */
+        background-color: var(--gray-50);
+        padding: 1rem 2rem;
+        border-radius: var(--radius-m);
+        border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .n-card-header {
+        color: var(--color-white);
+        background-color: var(--color-surface);
+        background-color: var(--color-border);
+        padding: 0.2rem 2rem;
+        margin-top: 2rem;
+        margin-bottom: -2px;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .n-card-title {
+        font-family: var(--font-sans);
+        font-weight: 800;
+        text-transform: uppercase;
+        color: var(--color-text-inv);
+        margin: 0;
+    }
+
+    /* ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ */
+    .container {
+        width: 100%;
+        max-width: var(--max-w);
+        margin-inline: auto;
+        padding: var(--gutter);
+    }
+
+    .container-wide {
+        width: 99.9%;
+        margin-inline: auto;
+        padding-inline: var(--gutter);
+    }
+
+    /* ── Header ── */
+    .header-grid {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        height: 3.75rem;
+    }
+
+    /* ── Hero ── */
+    .hero {
+        position: relative;
+        overflow: hidden;
+        padding-block-start: var(--sp-4xl);
+    }
+
+    .hero-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 42rem;
+        margin-inline: auto;
+        padding-block-end: var(--sp-3xl);
+    }
+
+    .hero-demo {
+        padding-block-end: var(--sp-4xl);
+    }
+}
+
+/* ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ */
+/* 4. Componentes */
+@layer components {
+    .theme-toggle {
+        justify-self: end;
+        padding: 6px;
+        background: none;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-s);
+        cursor: pointer;
+        color: var(--color-text-3);
+        line-height: 0;
+        transition: color var(--dur), border-color var(--dur);
+
+        &:hover {
+            color: var(--color-text-2);
+            border-color: var(--color-text-3);
+        }
+    }
+
+    .theme-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* ... seus outros estilos ... */
+    }
+
+    /* Garante que o ícone herde a cor do botão */
+    .theme-toggle svg {
+        stroke: currentColor;
+        fill: none;
+        /* Mantém apenas o traço se desejar o estilo outline */
+    }
+
+    .btn {
+        background-color: var(--brand-color);
+    }
+
+    .btn:hover {
+        /* Escurece a cor base misturando 20% de preto */
+        background-color: color-mix(in oklch, var(--brand-color), black 20%);
+    }
+
+}
+
+/* ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ */
+/* 5. Utilities */
+@layer utilities {
+    .n-text-sm {
+        font-size: var(--text-sm) !important;
+    }
+}
+
+/* ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ */

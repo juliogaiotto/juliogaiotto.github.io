@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador Mega-Sena | Julio Gaiotto</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Simulador de Loteria</h1>
+        <p>Selecione seus números para o jogo da Mega-Sena</p>
+    </header>
+
+    <main>
+        <section class="volante-container">
+            <div class="volante-header">
+                <h2>Mega-Sena</h2>
+                <span>01 JOGO</span>
+            </div>
+            
+            <div id="grade-numeros" class="grid-numeros">
+                </div>
+
+            <div class="controles">
+                <p>Números selecionados: <span id="contador">0</span>/6</p>
+                <button id="btn-limpar">Limpar Volante</button>
+                <button id="btn-confirmar" disabled>Confirmar Jogo</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 juliogaiotto.github.io</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otimizador de SVG</title>
+    <style>
+        /* Paleta Dracula & Terminal Vibe */
+        :root {
+            --bg: #282a36;
+            --current-line: #44475a;
+            --fg: #f8f8f2;
+            --comment: #6272a4;
+            --cyan: #8be9fd;
+            --green: #50fa7b;
+            --orange: #ffb86c;
+            --pink: #ff79c6;
+            --purple: #bd93f9;
+            --red: #ff5555;
+            --yellow: #f1fa8c;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: var(--purple);
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .panel {
+            background-color: var(--current-line);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .panel h2, .preview-header {
+            font-size: 1.2rem;
+            color: var(--cyan);
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            background-color: var(--bg);
+            color: var(--green);
+            border: 1px solid var(--comment);
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--pink);
+        }
+
+        .controls {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        button {
+            background-color: var(--purple);
+            color: var(--bg);
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            font-family: inherit;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--pink);
+        }
+
+        button.danger {
+            background-color: var(--red);
+            color: var(--fg);
+        }
+
+        button.danger:hover {
+            background-color: #ff6e6e;
+        }
+
+        /* Botões utilitários menores (Copiar e Zoom) */
+        .btn-small {
+            background-color: var(--comment);
+            color: var(--fg);
+            font-size: 0.85rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .btn-small:hover {
+            background-color: var(--purple);
+            color: var(--bg);
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 5px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .preview-container {
+            grid-column: 1 / -1;
+            background-color: var(--current-line);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .preview-box {
+            background-color: var(--bg);
+            border: 2px dashed var(--comment);
+            border-radius: 4px;
+            padding: 20px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            overflow: auto;
+            position: relative;
+        }
+
+        /* Suporte ao Zoom do SVG interno */
+        .preview-box svg {
+            max-width: 100%;
+            max-height: 400px;
+            transition: transform 0.2s ease;
+            transform-origin: center center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1><span style="color: var(--pink);">{</span> SVG Cleaner & Optimizer <span style="color: var(--pink);">}</span></h1>
+
+    <div class="controls">
+        <label for="fileUpload">
+            <button onclick="document.getElementById('fileUpload').click()">📁 Carregar .SVG</button>
+        </label>
+        <input type="file" id="fileUpload" accept=".svg">
+        
+        <button onclick="processSVG()">✨ Limpar e Otimizar</button>
+        <button class="danger" onclick="clearAll()">🗑️ Limpar Campos</button>
+    </div>
+
+    <div class="container">
+        <!-- Input Panel -->
+        <div class="panel">
+            <h2>
+                <span>Código Original</span>
+                <button class="btn-small" onclick="copyToClipboard('inputSvg', this)">📋 Copiar</button>
+            </h2>
+            <textarea id="inputSvg" placeholder="Cole o código SVG bruto aqui ou faça o upload..."></textarea>
+        </div>
+
+        <!-- Output Panel -->
+        <div class="panel">
+            <h2>
+                <span>Código Otimizado</span>
+                <button class="btn-small" onclick="copyToClipboard('outputSvg', this)">📋 Copiar</button>
+            </h2>
+            <textarea id="outputSvg" placeholder="O código limpo aparecerá aqui..." readonly></textarea>
+        </div>
+
+        <!-- Preview Panel -->
+        <div class="preview-container">
+            <div class="preview-header">
+                <span style="color: var(--yellow);">Preview da Imagem</span>
+                <div class="zoom-controls">
+                    <button class="btn-small" onclick="changeZoom(-0.15)">➖ Zoom Out</button>
+                    <button class="btn-small" onclick="changeZoom(0.15)">➕ Zoom In</button>
+                    <button class="btn-small" style="background-color: var(--bg);" onclick="resetZoom()">🔄 100%</button>
+                </div>
+            </div>
+            <div class="preview-box" id="previewBox">
+                <span id="previewPlaceholder" style="color: var(--comment);">A miniatura aparecerá aqui...</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const inputArea = document.getElementById('inputSvg');
+        const outputArea = document.getElementById('outputSvg');
+        const previewBox = document.getElementById('previewBox');
+        const fileUpload = document.getElementById('fileUpload');
+        
+        let zoomLevel = 1;
+
+        // Listener para upload de arquivos
+        fileUpload.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                inputArea.value = event.target.result;
+                renderPreview(event.target.result);
+            };
+            reader.readAsText(file);
+        });
+
+        // Atualização em tempo real do preview ao digitar no input
+        inputArea.addEventListener('input', () => {
+            renderPreview(inputArea.value);
+        });
+
+        // Mecanismo de Limpeza e Otimização
+        function processSVG() {
+            let svgString = inputArea.value.trim();
+            
+            if (!svgString) {
+                alert("Por favor, insira ou carregue um código SVG primeiro.");
+                return;
+            }
+
+            // Remove tags XML, Doctypes e comentários nativos
+            svgString = svgString.replace(/<\?xml[\s\S]*?\?>/gi, '');
+            svgString = svgString.replace(/<!DOCTYPE[\s\S]*?>/gi, '');
+            svgString = svgString.replace(/<!--[\s\S]*?-->/g, '');
+
+            try {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(svgString, "image/svg+xml");
+
+                if (doc.querySelector('parsererror')) {
+                    throw new Error("O código SVG possui erros de sintaxe estrutural.");
+                }
+
+                const svgElement = doc.documentElement;
+
+                // Remove elementos ocultos via CSS do editor gráfico
+                const hiddenElements = svgElement.querySelectorAll('[style*="display:none"], [style*="display: none"]');
+                hiddenElements.forEach(el => el.remove());
+
+                // Limpa contêineres de metadados e tags vazias comuns
+                const tagsToClean = ['metadata', 'defs', 'g'];
+                tagsToClean.forEach(tag => {
+                    const elements = svgElement.querySelectorAll(tag);
+                    elements.forEach(el => {
+                        if (el.innerHTML.trim() === '') {
+                            el.remove();
+                        }
+                    });
+                });
+
+                // Conversão de volta para String de texto
+                const serializer = new XMLSerializer();
+                let cleanString = serializer.serializeToString(svgElement);
+
+                // Varre Namespaces desnecessários (Inkscape, Illustrator, RDF)
+                cleanString = cleanString.replace(/\s+xmlns:(rdf|cc|dc|sodipodi|inkscape)=".*?"/g, '');
+                cleanString = cleanString.replace(/\s+(sodipodi|inkscape):[a-z\-]+=".*?"/g, '');
+
+                // Exibe a saída formatada e atualiza a viewport
+                outputArea.value = formatXML(cleanString);
+                renderPreview(cleanString);
+
+            } catch (error) {
+                alert("Erro ao processar o SVG: " + error.message);
+            }
+        }
+
+        // Renderização e controle de visualização do SVG
+        function renderPreview(svgCode) {
+            if (!svgCode.trim()) {
+                previewBox.innerHTML = '<span id="previewPlaceholder" style="color: var(--comment);">A miniatura aparecerá aqui...</span>';
+                return;
+            }
+            previewBox.innerHTML = svgCode;
+            resetZoom(); // Sempre inicia novos arquivos na escala original
+        }
+
+        // Manipulação de Zoom
+        function changeZoom(amount) {
+            const svg = previewBox.querySelector('svg');
+            if (!svg) return;
+
+            // Restringe o zoom entre 20% e 400% do tamanho
+            zoomLevel = Math.max(0.2, Math.min(4.0, zoomLevel + amount));
+            svg.style.transform = `scale(${zoomLevel})`;
+        }
+
+        function resetZoom() {
+            zoomLevel = 1;
+            const svg = previewBox.querySelector('svg');
+            if (svg) svg.style.transform = `scale(${zoomLevel})`;
+        }
+
+        // Funcionalidade de Cópia para o Clipboard
+        function copyToClipboard(elementId, buttonElement) {
+            const targetTextArea = document.getElementById(elementId);
+            
+            if (!targetTextArea.value.trim()) return;
+
+            navigator.clipboard.writeText(targetTextArea.value).then(() => {
+                const originalText = buttonElement.innerHTML;
+                buttonElement.innerHTML = "✅ Copiado!";
+                buttonElement.style.backgroundColor = "var(--green)";
+                buttonElement.style.color = "var(--bg)";
+                
+                setTimeout(() => {
+                    buttonElement.innerHTML = originalText;
+                    buttonElement.style.backgroundColor = "";
+                    buttonElement.style.color = "";
+                }, 1500);
+            }).catch(err => {
+                console.error("Falha ao copiar texto: ", err);
+            });
+        }
+
+        // Reset geral da aplicação
+        function clearAll() {
+            inputArea.value = '';
+            outputArea.value = '';
+            fileUpload.value = '';
+            renderPreview('');
+        }
+
+        // Indentador básico de nós XML/SVG
+        function formatXML(xml) {
+            let formatted = '';
+            let pad = 0;
+            xml.split(/>\s*</).forEach(function(node) {
+                if (node.match( /^\/\w/ )) {
+                    pad -= 2;
+                }
+                formatted += ' '.repeat(Math.max(0, pad)) + '<' + node + '>\r\n';
+                if (node.match( /^<?\w[^>]*[^\/]$/ ) && !node.startsWith("input")  ) {
+                    pad += 2;
+                }
+            });
+            return formatted.substring(1, formatted.length - 2);
+        }
+    </script>
+</body>
+</html>
