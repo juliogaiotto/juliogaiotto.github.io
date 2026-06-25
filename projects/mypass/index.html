@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,83 +10,93 @@
     <link rel= "icon" href="favicon.ico" type="image/x-icon">
     <title>MyPassWord - Gerador de Senhas</title>
     <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 
-<div class="wrapper">
-    
-    <h1><img src="assets/favicon.png" alt="MyPassWord" width="31" height="31"/> MyPassWord</h1>
-    <p>Gerador de Senhas Personalizadas</p>
-    
-    <hr/>
+<main class="main-grid neo-shadow-inner-1" >
 
-    <div class="form-group">
+    <header class="" style="margin-bottom:-1.2rem;">
+        <h1><i class="fa-solid fa-key"></i> MyPassWord</h1>
+        <p>Gerador de Senhas Personalizadas</p>
+    </header>
+
+    <section class="neo-card neo-shadow-outer-1">
         <label>Opções da Senha:</label>
-        <div class="checkbox-group flex-row">
-            <div class="box">
-                <label><input type="checkbox" id="chkUpper" checked> Letras Maiúsculas (A-Z)</label>
-                <label><input type="checkbox" id="chkLower" checked> Letras Minúsculas (a-z)</label>
-            </div>
-            <div class="box">
-                <label><input type="checkbox" id="chkNum" checked> Números (0-9)</label>
-                <label><input type="checkbox" id="chkSpec" checked> Caracteres Especiais (!@#$%)</label>
-            </div>
+        <div class="grid gc-1-1">
+
+                <label class="neo-checkbox-label">
+                    <input class="neo-checkbox-input" type="checkbox" id="chkUpper" checked>
+                    <span class="neo-checkbox-custom"></span>
+                    <span class="neo-checkbox-text">Letras Maiúsculas (A-Z)</span>   
+                </label>
+                <label class="neo-checkbox-label">
+                    <input class="neo-checkbox-input" type="checkbox" id="chkLower" checked>
+                    <span class="neo-checkbox-custom"></span>
+                    <span class="neo-checkbox-text">Letras Minúsculas (a-z)</span>                     
+                </label>
+
+                <label class="neo-checkbox-label">
+                    <input class="neo-checkbox-input" type="checkbox" id="chkNum" checked>
+                    <span class="neo-checkbox-custom"></span>
+                    <span class="neo-checkbox-text">Números (0-9)</span>
+                </label>
+                <label class="neo-checkbox-label">
+                    <input class="neo-checkbox-input" type="checkbox" id="chkSpec" checked>
+                    <span class="neo-checkbox-custom"></span>
+                    <span class="neo-checkbox-text">Especiais (!@#$%)</span>
+                </label>
+
         </div>
-    </div>
+    </section>
 
-    <div class="form-group">
-        <label>Tamanho da Senha:</label>
-        <select id="selLength">
-            <option value="6">6 caracteres</option>
-            <option value="8">8 caracteres</option>
-            <option value="10">10 caracteres</option>
-            <option value="12" selected>12 caracteres</option>
-            <option value="14">14 caracteres</option>
-            <option value="18">18 caracteres</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label>Site / Sistema:</label>
-        <input type="text" id="inputSite" placeholder="Ex: www.github.com" class="google-sans-code">
-    </div>
-
-    <div class="form-group">
-        <label>Nome (Identificação/Login):</label>
-        <input type="text" id="inputNome" placeholder="Ex: Meu Email Principal" class="google-sans-code">
-    </div>
-
-    <div class="form-group">
-        <label>Senha Gerada:</label>
-        <input type="text" id="inputSenha" placeholder="Clique em Gerar Senha" class="google-sans-code" style="border: 1px solid #4CAF50;">
-    </div>
-
-    <div class="btn-container">
-        <button id="btnGerar">🗝️ Gerar Senha</button>
-        <button id="btnSalvar" class="btn-secondary">💾 Download da Senha</button>
-    </div>
-
-    <div id="statusMessage"></div>
-
-    <footer class="flex-row">
-        <div class="box">            
-             <a  class="btn" href="https://juliogaiotto.github.io/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-square-github"></i> Meu GitHub</a>
+    <section class="neo-card neo-shadow-outer-1">
+        <div class="grid gc-1-2">
+            <label>Tamanho da Senha:</label>
+            <select class="neo-input" id="selLength">
+                <option value="6">6 caracteres</option>
+                <option value="8">8 caracteres</option>
+                <option value="10">10 caracteres</option>
+                <option value="12" selected>12 caracteres</option>
+                <option value="14">14 caracteres</option>
+                <option value="18">18 caracteres</option>
+            </select>
         </div>
-        <div class="box">
-            <a class="btn" href="https://link.mercadopago.com.br/juliogaiotto"><i class="fa-solid fa-mug-hot"></i> Apoie-me</a>
-            <!-- <a href="https://juliogaiotto.github.io/"><small>↩ Voltar para o perfil de Julio Gaiotto</small></a> -->
+        <div class="grid gc-1-2">
+            <label>Site / Sistema:</label>
+            <input class="neo-input font-mono" type="text" id="inputSite" placeholder="Ex: juliogaiotto.github.io" >
         </div>
-        <div class="box">
-        <span class="btn-fake">
-            <small>
-                Desenvolvido por <a href="https://juliogaiotto.github.io/" target="_blank" rel="noopener noreferrer">Julio Gaiotto</a> | &copy; 2024
-            </small>
-        </span>
+        <div class="grid gc-1-2">
+            <label>Nome (Login):</label>
+            <input class="neo-input font-mono" type="text" id="inputNome" placeholder="Ex: meu-email@principal.com">
         </div>
+        <div class="grid gc-1-2">
+            <label>Senha Gerada:</label>
+            <input class="neo-input font-mono" type="text" id="inputSenha" placeholder="Clique em Gerar Senha">
+        </div>
+    </section>
+
+    <div class="grid gc-1-1">
+        <button class="neo-btn neo-shadow-outer-1" id="btnSalvar"><i class="fa-solid fa-floppy-disk"></i> Download da Senha</button>
+        <button class="neo-btn neo-btn-alt neo-shadow-outer-1" id="btnGerar"><i class="fa-solid fa-key"></i> Gerar Senha</button>
+    </div>
+    <!-- <div id="statusMessage">&nbsp;</div> -->
+    <hr>
+    <footer class="grid">
+        <div class="gr-1-2">
+            <a class="neo-btn neo-shadow-outer-1" href="https://juliogaiotto.github.io/" rel="noopener noreferrer">
+                <i class="fa-brands fa-github"></i> Meu GitHub
+            </a>
+            <a class="neo-btn neo-shadow-outer-1" href="https://link.mercadopago.com.br/juliogaiotto">
+                <i class="fa-solid fa-mug-hot"></i> Doe um café para o Dev
+            </a>
+        </div>
+        <p class="small">
+            Desenvolvido por <a href="https://juliogaiotto.github.io/" target="_blank" rel="noopener noreferrer">Julio Gaiotto</a> |  2025
+        </p>
     </footer>
-</div>
+</main>
 
-    <script src="assets/js/script.js"></script>
+<script src="assets/js/script.js"></script>
 </body>
 </html>

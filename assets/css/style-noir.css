@@ -1,0 +1,402 @@
+/* ==========================
+   RESET
+========================== */
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* ==========================
+   VARIABLES
+========================== */
+:root{
+    --bg:#080808;
+
+    --surface:#111111;
+    --surface-2:#181818;
+
+    --border:#262626;
+
+    --text:#f5f5f5;
+    --muted:#9c9c9c;
+
+    --accent:#d9a441;
+    --accent-light:#f0c873;
+
+    --radius:1.5rem;
+
+    --space-xs:.75rem;
+    --space-sm:1rem;
+    --space-md:1.5rem;
+    --space-lg:2.5rem;
+    --space-xl:4rem;
+
+    --container:1280px;
+}
+
+/* ==========================
+   BASE
+========================== */
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:
+        Inter,
+        Segoe UI,
+        sans-serif;
+
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+img{
+    max-width:100%;
+    display:block;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font:inherit;
+}
+
+/* ==========================
+   BACKGROUND
+========================== */
+
+.bg-glow{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(217,164,65,.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            rgba(255,255,255,.05),
+            transparent 40%
+        );
+    z-index:-1;
+}
+
+/* ==========================
+   LAYOUT
+========================== */
+.navbar,
+.hero,
+.features,
+.contact{
+    width:min(
+        calc(100% - 2rem),
+        var(--container)
+    );
+    margin-inline:auto;
+}
+
+/* ==========================
+   NAVBAR
+========================== */
+.navbar{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:1rem;
+    padding:1.5rem 0;
+}
+
+.logo{
+    font-size:1.2rem;
+    font-weight:800;
+    letter-spacing:4px;
+}
+
+.menu-toggle{
+    background:none;
+    border:none;
+    color:white;
+    font-size:1.5rem;
+    cursor:pointer;
+}
+
+.menu{
+    display:none;
+    width:100%;
+    flex-direction:column;
+    gap:.75rem;
+    text-align:center;
+}
+
+.menu.active{
+    display:flex;
+}
+
+.menu a{
+    color:var(--muted);
+    transition:.3s;
+}
+
+.menu a:hover{
+    color:var(--accent);
+}
+
+/* ==========================
+   HERO
+========================== */
+
+.hero{
+    text-align:center;
+    padding:4rem 0;
+}
+
+.badge{
+    display:inline-block;
+    padding:.6rem 1rem;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.04);
+    color:var(--accent);
+    font-size:.85rem;
+}
+
+.hero h1{
+    margin-top:1.5rem;
+    font-size:clamp(
+        2rem,
+        8vw,
+        5rem
+    );
+    line-height:1.1;
+}
+
+.hero p{
+    max-width:700px;
+    margin:
+        1.5rem auto 0;
+    color:var(--muted);
+    line-height:1.8;
+}
+
+.hero-actions{
+    margin-top:2rem;
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+}
+
+/* ==========================
+   BUTTONS
+========================== */
+
+.btn{
+    border:none;
+    border-radius:1rem;
+    padding:1rem 1.5rem;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btn-primary{
+    color:black;
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent-light),
+            var(--accent)
+        );
+    box-shadow:
+        0 0 25px rgba(217,164,65,.25);
+}
+
+.btn-primary:hover{
+    transform:translateY(-3px);
+    box-shadow:
+        0 10px 35px rgba(217,164,65,.35);
+}
+
+.btn-secondary{
+    color:white;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+/* ==========================
+   FEATURES
+========================== */
+
+.features{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:1.5rem;
+    padding-bottom:4rem;
+}
+
+.card{
+    position:relative;
+    padding:2rem;
+    border-radius:var(--radius);
+    border:1px solid rgba(255,255,255,.05);
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.04),
+            rgba(255,255,255,.02)
+        );
+    backdrop-filter:blur(12px);
+    transition:.35s;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:2px;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--accent),
+            transparent
+        );
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.card p{
+    margin-top:.75rem;
+    color:var(--muted);
+}
+
+/* ==========================
+   FORM
+========================== */
+
+.contact{
+    padding-bottom:5rem;
+}
+
+.form-card{
+    background:var(--surface);
+    border-radius:var(--radius);
+    padding:1.5rem;
+    border:1px solid rgba(255,255,255,.05);
+}
+
+.form-card h2{
+    margin-bottom:1.5rem;
+}
+
+.field{
+    margin-bottom:1rem;
+}
+
+.field label{
+    display:block;
+    margin-bottom:.5rem;
+}
+
+.field input,
+.field textarea{
+    width:100%;
+    padding:1rem;
+    border-radius:1rem;
+    border:1px solid rgba(255,255,255,.08);
+    background:#0c0c0c;
+    color:white;
+}
+
+.field textarea{
+    resize:vertical;
+    min-height:140px;
+}
+
+.field input:focus,
+.field textarea:focus{
+    outline:none;
+    border-color:var(--accent);
+    box-shadow:
+        0 0 15px rgba(217,164,65,.25);
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media (min-width:768px){
+
+    .hero-actions{
+        flex-direction:row;
+        justify-content:center;
+    }
+
+    .features{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .form-card{
+        padding:2rem;
+    }
+}
+
+/* ==========================
+   DESKTOP
+========================== */
+
+@media (min-width:1200px){
+
+    .navbar{
+        flex-direction:row;
+        justify-content:space-between;
+    }
+
+    .menu-toggle{
+        display:none;
+    }
+
+    .menu{
+        display:flex;
+        flex-direction:row;
+        width:auto;
+        gap:2rem;
+    }
+
+    .hero{
+        text-align:left;
+        padding:8rem 0;
+    }
+
+    .hero p{
+        margin-left:0;
+    }
+
+    .hero-actions{
+        justify-content:flex-start;
+    }
+
+    .features{
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+    .form-card{
+        max-width:700px;
+    }
+}

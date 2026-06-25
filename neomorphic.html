@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neomorphic Design System - Teste</title>
+  <link rel="stylesheet" href="assets/css/neomorphic.css">
+  <style>
+    /* Estilos adicionais apenas para organizar o grid de teste na tela */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+    .demo-section {
+      margin-bottom: 32px;
+    }
+    .demo-section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .flex-group {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    @media (min-width: 768px) {
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .flex-group {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <header style="margin-bottom: 40px; text-align: center;">
+      <h1 style="font-size: 2rem; margin-bottom: 8px;">Neomorphic Elements</h1>
+      <p style="color: var(--color-gray-light);">Visualizador de componentes mobile-first</p>
+    </header>
+
+    <section class="demo-section">
+      <h2>Componentes de Botão</h2>
+      <div class="neo-card">
+        <p style="margin-bottom: 16px;">Toque ou clique nos botões para testar o efeito <em>Inner Shadow</em> (afundado) ativo.</p>
+        <div class="flex-group">
+          <button class="neo-btn">Botão Principal</button>
+          <button class="neo-btn neo-btn-alt">Botão Alternativo</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Entradas de Formulário</h2>
+      <div class="neo-card">
+        <div class="flex-group" style="flex-direction: column; align-items: stretch;">
+          <label style="font-size: 0.9rem; margin-bottom: 4px; display: block;">Nome de Usuário</label>
+          <input type="text" class="neo-input" placeholder="Digite seu usuário...">
+          
+          <label style="font-size: 0.9rem; margin-bottom: 4px; display: block; margin-top: 12px;">Senha</label>
+          <input type="password" class="neo-input" placeholder="Sua senha secreta...">
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Classes Utilitárias de Sombra (Especificação da Imagem)</h2>
+      <div class="grid-2">
+        
+        <div class="neo-card neo-shadow-inner-1" style="text-align: center; padding: 30px 16px;">
+          <strong>Inner Shadow 1</strong>
+          <div style="font-size: 0.8rem; margin-top: 8px; color: var(--color-gray-light);">X & Y: 5 | Blur: 10 (Interna)</div>
+        </div>
+
+        <div class="neo-card neo-shadow-outer-1" style="text-align: center; padding: 30px 16px;">
+          <strong>Outer Shadow 1</strong>
+          <div style="font-size: 0.8rem; margin-top: 8px; color: var(--color-gray-light);">X & Y: 5 | Blur: 10</div>
+        </div>
+
+        <div class="neo-card neo-shadow-outer-2" style="text-align: center; padding: 30px 16px;">
+          <strong>Outer Shadow 2 (Média)</strong>
+          <div style="font-size: 0.8rem; margin-top: 8px; color: var(--color-gray-light);">X & Y: 10 | Blur: 20</div>
+        </div>
+
+        <div class="neo-card neo-shadow-outer-3" style="text-align: center; padding: 30px 16px;">
+          <strong>Outer Shadow 3 (Forte)</strong>
+          <div style="font-size: 0.8rem; margin-top: 8px; color: var(--color-gray-light);">X & Y: 20 | Blur: 40</div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Script simples para simular o estado ativo persistente em dispositivos móveis caso necessário, 
+    // embora o CSS pseudo-class `:active` já cubra a maior parte do comportamento nativo.
+    const buttons = document.querySelectorAll('.neo-btn');
+    buttons.forEach(btn => {
+      btn.addEventListener('touchstart', function() {
+        this.classList.add('is-pressed');
+      });
+      btn.addEventListener('touchend', function() {
+        this.classList.remove('is-pressed');
+      });
+    });
+  </script>
+</body>
+</html>

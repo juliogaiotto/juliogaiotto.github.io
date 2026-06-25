@@ -1,0 +1,163 @@
+/*
+ * neomorphic.css
+ * Estrutura baseada em Camadas (@layer) e responsividade Mobile-First.
+ */
+
+/* Declaração das camadas conforme boas práticas modernas */
+@layer base, components, utilities;
+
+@layer base {
+  :root {
+    /* Cores fiéis à imagem */
+    --color-bg-main: #EFF2F9;
+    --color-bg-alt: #E4EBF1;
+    --color-gray-light: #B5BFC6;
+    --color-gray-dark: #6E7F8D;
+    
+    /* Sombras mapeadas diretamente da folha de estilos */
+    --shadow-light-color: #FAFBFF;               /* Opacity 100% */
+    --shadow-dark-color: rgba(22, 27, 29, 0.23); /* #161B1D convertido para rgba com 23% */
+    
+    /* Tipografia */
+    --font-primary: 'Camton', 'Avenir Next', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-bg-main);
+    color: var(--color-gray-dark);
+    font-family: var(--font-primary);
+    font-weight: 400;
+    min-height: 100vh;
+    padding: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  /* ==================== BOTÕES ==================== */
+  .neo-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Mobile-first ocupando largura total */
+    padding: 14px 24px;
+    border: none;
+    outline: none;
+    background-color: var(--color-bg-main);
+    color: var(--color-gray-dark);
+    font-family: var(--font-primary);
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    
+    /* Sombra externa intermediária (X & Y: 10, Blur: 20) */
+    box-shadow: -10px -10px 20px var(--shadow-light-color), 
+                10px 10px 20px var(--shadow-dark-color);
+  }
+
+  /* Estado ativo / Pressionado (Efeito Afundado - Inner Shadow) */
+  .neo-btn:active, 
+  .neo-btn.is-pressed {
+    box-shadow: inset -5px -5px 10px var(--shadow-light-color), 
+                inset 5px 5px 10px var(--shadow-dark-color);
+    transform: scale(0.98);
+  }
+
+  /* Botão Secundário usando a cor alternativa #E4EBF1 */
+  .neo-btn-alt {
+    background-color: var(--color-bg-alt);
+    box-shadow: -10px -10px 20px rgba(255, 255, 255, 0.9), 
+                10px 10px 20px rgba(22, 27, 29, 0.15);
+  }
+  
+  .neo-btn-alt:active {
+    box-shadow: inset -5px -5px 10px rgba(255, 255, 255, 0.9), 
+                inset 5px 5px 10px rgba(22, 27, 29, 0.15);
+  }
+
+  /* ==================== CARDS / CONTAINERS ==================== */
+  .neo-card {
+    width: 100%;
+    background-color: var(--color-bg-main);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: -10px -10px 20px var(--shadow-light-color), 
+                10px 10px 20px var(--shadow-dark-color);
+  }
+
+  /* ==================== FORM INPUTS ==================== */
+  .neo-input {
+    width: 100%;
+    padding: 14px 18px;
+    border: none;
+    outline: none;
+    background-color: var(--color-bg-main);
+    color: var(--color-gray-dark);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    
+    /* Elementos de input normalmente usam sombra interna (X & Y: 5, Blur: 10) */
+    box-shadow: inset -5px -5px 10px var(--shadow-light-color), 
+                inset 5px 5px 10px var(--shadow-dark-color);
+  }
+
+  .neo-input:focus {
+    /* Efeito sutil ao focar para acessibilidade e design */
+    box-shadow: inset -2px -2px 5px var(--shadow-light-color), 
+                inset 2px 2px 5px var(--shadow-dark-color),
+                0 0 0 2px var(--color-gray-light);
+  }
+
+  /* ==================== RESPONSIVIDADE (MEDIA QUERIES) ==================== */
+  @media (min-width: 768px) {
+    .neo-btn {
+      width: auto; /* Deixa o botão com tamanho natural em telas maiores */
+      min-width: 160px;
+    }
+    
+    .neo-card {
+      padding: 30px;
+      border-radius: 24px;
+    }
+  }
+}
+
+@layer utilities {
+  /* Classes utilitárias mapeadas exatamente das 4 caixas de exemplos da imagem */
+  
+  /* 1ª Caixa: Inner Shadows (X&Y: 5, Blur: 10) */
+  .neo-shadow-inner-1 {
+    box-shadow: inset -5px -5px 10px var(--shadow-light-color), 
+                inset 5px 5px 10px var(--shadow-dark-color);
+  }
+
+  /* 2ª Caixa: Outer Shadows Suave (X&Y: 5, Blur: 10) */
+  .neo-shadow-outer-1 {
+    box-shadow: -5px -5px 10px var(--shadow-light-color), 
+                5px 5px 10px var(--shadow-dark-color);
+  }
+
+  /* 3ª Caixa: Outer Shadows Média (X&Y: 10, Blur: 20) */
+  .neo-shadow-outer-2 {
+    box-shadow: -10px -10px 20px var(--shadow-light-color), 
+                10px 10px 20px var(--shadow-dark-color);
+  }
+
+  /* 4ª Caixa: Outer Shadows Intensa (X&Y: 20, Blur: 40) */
+  .neo-shadow-outer-3 {
+    box-shadow: -20px -20px 40px var(--shadow-light-color), 
+                20px 20px 40px var(--shadow-dark-color);
+  }
+}

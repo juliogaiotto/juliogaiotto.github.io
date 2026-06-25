@@ -1,6 +1,32 @@
+/* ────────────────────────────────────────────────────────────────────────────────
+ *      MyPassWord - Estilos - 2025
+ * ──────────────────────────────────────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&display=swap');
 
-:root{
+:root {
+    /* OBRIGATÓRIO: Diz ao navegador que o site aceita ambos os temas */
+    color-scheme: light dark;
+
+/*  ──────────────────────────────────────────────────────────────────────────────────────
+    PALETA DE CORES COM LIGHT-DARK()
+    Sintaxe: light-dark(versão-clara, versão-escura)
+    ────────────────────────────────────────────────────────────────────────────────────── */
+    /* NEOMORPHIC - Paleta Base */
+    --color-bg-main:        light-dark(oklch(96% 0.0100 267),oklch(20% 0.0100 267));
+    --color-bg-alt:         light-dark(oklch(94% 0.0111 243),oklch(24% 0.0111 243));
+    
+    --color-fg-light:       light-dark(oklch(80% 0.0149 238),oklch(45% 0.0149 238));
+    --color-fg-dark:        light-dark(oklch(59% 0.0294 243),oklch(88% 0.0294 243));
+
+    --color-gray-light:     light-dark(oklch(80% 0.0149 238),oklch(45% 0.0149 238));
+    --color-gray-dark:      light-dark(oklch(59% 0.0294 243),oklch(88% 0.0294 243));
+
+    /* NEOMORPHIC - Sombras */
+    --shadow-light-color:   light-dark(oklch(99% 0.0055 275),oklch(28% 0.0100 267 / 0.4));
+    --shadow-dark-color:    light-dark(oklch(22% 0.0085 224 / 0.23),oklch(10% 0.0050 267 / 0.7));
+    --shadow-btn-alt-shadow-1:   light-dark(oklch(99% 0.0001 271 / 0.9),oklch(28% 0.0100 267 / 0.35));
+    --shadow-btn-alt-shadow-2:   light-dark(oklch(22% 0.0085 224 / 0.15),oklch(10% 0.0050 267 / 0.65));
+
     --color-blue: #007acc;
     --color-blue-hover: #005f9e;
     --color-green: #4CAF50;
@@ -10,19 +36,10 @@
     --gap-padrao: 16px;
 }
 
-.google-sans-code {
-  font-family: "Google Sans Code", monospace;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 16px;
-}
-
 /* Estilo inspirado no VS Code Dark Theme */
 body {
-    background-color: var(--background-color-secondary);
-    color: var(--font-color);
-    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    background-color: var(--color-bg-main);
+    color: var(--color-fg-dark);
     font-family: "Google Sans Flex", Helvetica, Arial, sans-serif;
     padding: 20px;
     margin: 0;

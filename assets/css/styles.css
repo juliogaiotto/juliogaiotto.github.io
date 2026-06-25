@@ -1,0 +1,707 @@
+@charset "UTF-8";
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=PT+Mono&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@layer tokens, reset, layout, components, responsive;
+
+@layer tokens {
+    :root {
+        /* OBRIGATÓRIO: Diz ao navegador que o site aceita ambos os temas */
+        color-scheme: light dark;
+
+    /*  ──────────────────────────────────────────────────────────────────────────────────────
+        PALETA DE CORES COM LIGHT-DARK()
+        Sintaxe: light-dark(versão-clara, versão-escura)
+        ────────────────────────────────────────────────────────────────────────────────────── */
+        /* NEOMORPHIC - Paleta Base */
+        --color-bg-main:      light-dark(oklch(96% 0.0100 267),oklch(20% 0.0100 267));
+        --color-bg-alt:       light-dark(oklch(94% 0.0111 243),oklch(24% 0.0111 243));
+        
+        --color-fg-light:   light-dark(oklch(80% 0.0149 238),oklch(45% 0.0149 238));
+        --color-fg-dark:    light-dark(oklch(59% 0.0294 243),oklch(88% 0.0294 243));
+
+        --color-gray-light:   light-dark(oklch(80% 0.0149 238),oklch(45% 0.0149 238));
+        --color-gray-dark:    light-dark(oklch(59% 0.0294 243),oklch(88% 0.0294 243));
+
+        /* NEOMORPHIC - Sombras */
+        --shadow-light-color: light-dark(oklch(99% 0.0055 275),oklch(28% 0.0100 267 / 0.4));
+        --shadow-dark-color:  light-dark(oklch(22% 0.0085 224 / 0.23),oklch(10% 0.0050 267 / 0.7));
+
+        --color-btn-alt-shadow-1: light-dark(oklch(99% 0.0001 271 / 0.9),oklch(28% 0.0100 267 / 0.35));
+        --color-btn-alt-shadow-2:  light-dark(oklch(22% 0.0085 224 / 0.15),oklch(10% 0.0050 267 / 0.65));
+        
+
+        /* Cores de Fundo (Surfaces) ───────────────────────────────────────────────────────────── */
+        --color-bg-site:        light-dark(oklch(95% 0.013 82), oklch(14% 0.035 271));
+        --color-bg-site-alt:    light-dark(oklch(14% 0.035 271), oklch(95% 0.013 82));
+        --color-surface:        light-dark(oklch(95% 0.013 267), oklch(30% 0.023 267));
+        --color-surface-alt:    light-dark(oklch(30% 0.023 267), oklch(95% 0.013 267));
+        --color-bg-card:        light-dark(oklch(97% 0.008 237), oklch(28% 0.061 267 / 0.75));
+        --color-bg-card-alt:    light-dark(oklch(22% 0.061 268 / 0.75), oklch(97% 0.008 237));
+        --color-bg-card-clean:  light-dark(oklch(97% 0.008 237), oklch(58% 0.061 268 / 0.75));
+
+        /* Cores de Texto (Tipografia) ─────────────────────────────────────────────────────────── */
+        --color-text:           light-dark(oklch(21% 0.001 271), oklch(98% 0.009 271));
+        --color-text-alt:       light-dark(oklch(98% 0.008 271), oklch(28% 0.001 271));
+        --color-text-muted:     light-dark(oklch(24% 0.029 271), oklch(71% 0.019 271));
+        --color-text-muted-alt: light-dark(oklch(71% 0.019 271), oklch(61% 0.090 271));        
+        /* --color-text-accent:    light-dark(oklch(78% 0.098 80), oklch(68% 0.105 80)); */
+        --color-text-accent:    light-dark(oklch(72% 0.105 80), oklch(68% 0.105 80));
+
+        /* Cores de Marca e Destaques (Brand & Accents) ───────────────────────────────────────── */
+        --color-primary:   light-dark(oklch(90% 0.019 271), oklch(24% 0.024 271));
+        --color-secondary: light-dark(oklch(51% 0.087 61), oklch(74% 0.087 80));
+        --color-accent:    light-dark(oklch(42% 0.148 26), oklch(38% 0.126 26));
+        --color-action:    light-dark(oklch(74% 0.087 80), oklch(51% 0.087 61));
+        
+        --color-primary-alt:    light-dark(oklch(24% 0.024 271), oklch(90% 0.019 271));
+        --color-secondary-alt:  light-dark(oklch(74% 0.087 80), oklch(51% 0.087 61));
+        --color-accent-alt:     light-dark(oklch(38% 0.126 26), oklch(42% 0.148 26));
+        --color-action-alt:     light-dark(oklch(51% 0.087 61), oklch(74% 0.087 80));
+
+        /* Elementos de Ação (Botões / Links) ────────────────────────────────────────────────── */
+        --color-btn-text: light-dark(oklch(96% 0.008 115), oklch(96% 0.008 272));
+        --color-btn: light-dark(oklch(72% 0.105 80), oklch(68% 0.105 80));
+        --color-btn-accent: light-dark(oklch(46% 0.136 26), oklch(38% 0.126 26));
+
+        ---color-shadown: light-dark(oklch(12% 0 270 / 0.3), oklch(98% 0.0001 270 / 0.3));
+        --color-btn-shadow: 1px 2px 0 var(---color-shadown);
+        
+        /* Bordas, Divisores e outros ────────────────────────────────────────────────────────── */
+        --color-bar-bg: light-dark(oklch(96% 0.008 271 / 0.85),oklch(18% 0.002 271 / 0.85));
+        --color-border: light-dark(oklch(0% 0 0 / 0.1), oklch(99% 0.001 271 / 0.1));
+        /* --color-border: oklch(100% 0.0001 272 / 0.12); */
+        /* ───────────────────────────────────────────────────────────────────────────────────── */
+
+        /* ───────────    SUCCESS (Verde)    ─────────── */
+        --success-bg: light-dark(oklch(50% 0.110 151), oklch(45% 0.110 151));
+        --success-bg-hover: light-dark(oklch(56% 0.120 151), oklch(50% 0.120 151));
+        --success-fg: light-dark(oklch(30% 0.060 151), oklch(95% 0.030 151));
+        --success-bg-soft: light-dark(oklch(95% 0.030 151), oklch(18% 0.040 151));
+        --success-fg-soft: light-dark(oklch(47% 0.110 151), oklch(75% 0.100 151));
+
+        /* ───────────    WARNING (Amarelo)    ─────────── */
+        --warning-bg: light-dark(oklch(78% 0.140 96), oklch(70% 0.140 96));
+        --warning-bg-hover: light-dark(oklch(72% 0.150 96), oklch(65% 0.150 96));
+        --warning-fg: light-dark(oklch(34% 0.050 96), oklch(15% 0.030 96));
+        --warning-bg-soft: light-dark(oklch(98% 0.043 96), oklch(20% 0.040 96));
+        --warning-fg-soft: light-dark(oklch(50% 0.117 96), oklch(82% 0.110 96));
+
+        /* ───────────    ERROR (Vermelho)    ─────────── */
+        --error-bg: light-dark(oklch(58% 0.180 25), oklch(50% 0.180 25));
+        --error-bg-hover: light-dark(oklch(52% 0.190 25), oklch(44% 0.190 25));
+        --error-fg: light-dark(oklch(32% 0.080 25), oklch(96% 0.020 25));
+        --error-bg-soft: light-dark(oklch(93% 0.030 25), oklch(18% 0.040 25));
+        --error-fg-soft: light-dark(oklch(40% 0.090 25), oklch(78% 0.120 25));
+
+        /* ───────────    ALERT (Laranja)    ─────────── */
+        --alert-bg: light-dark(oklch(68% 0.120 50), oklch(58% 0.120 50));
+        --alert-bg-hover: light-dark(oklch(64% 0.117 50), oklch(52% 0.117 50));
+        --alert-fg: light-dark(oklch(30% 0.070 50), oklch(95% 0.030 50));
+        --alert-bg-soft: light-dark(oklch(92% 0.070 60), oklch(19% 0.050 60));
+        --alert-fg-soft: light-dark(oklch(40% 0.10 60), oklch(80% 0.10 60));
+
+        /* ───────────    INFO (Azul)    ─────────── */
+        --info-bg: light-dark(oklch(65% 0.080 230), oklch(52% 0.080 230));
+        --info-bg-hover: light-dark(oklch(60% 0.090 230), oklch(46% 0.090 230));
+        --info-fg: light-dark(oklch(30% 0.050 230), oklch(94% 0.020 230));
+        --info-bg-soft: light-dark(oklch(92% 0.020 230), oklch(18% 0.030 230));
+        --info-fg-soft: light-dark(oklch(40% 0.060 230), oklch(76% 0.070 230));
+
+        /* ───────────    FONT FAMILY    ─────────── */
+        --font-head: "Poppins", -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-body: "Figtree", -apple-system, BlinkMacSystemFont, sans-serif;        
+        
+        /* ───────────   TAMANHOS DE FONT   ─────────── */
+        /* Tamanho padrão para calculo dos outros tamanhos */
+        ---fs-default: 12px;        
+        --fs-md: clamp(1.2rem, 0.3vw + 1rem, 1.6rem); /* 12px a 16px */
+
+        /* Tamanhos menores */
+        --fs-sm: calc(var(--fs-md) - .1rem);
+        --fs-sm1: calc(var(--fs-md) - .1rem);
+        --fs-sm2: calc(var(--fs-md) - .15rem);
+        --fs-sm3: calc(var(--fs-md) - .2rem); 
+        --fs-sm4: calc(var(--fs-md) - .25rem);
+
+        /* Tamanhos maiores*/
+        --fs-lg: calc(var(--fs-md) + .3rem);
+        --fs-lg1: calc(var(--fs-md) + .4rem);
+        --fs-lg2: calc(var(--fs-md) + .8rem);
+        --fs-lg3: calc(var(--fs-md) + 1.2rem);
+        --fs-lg4: calc(var(--fs-md) + 1.6rem);
+        
+        /* ───────────   OUTRAS CONFIGURAÇÕES   ─────────── */
+        --shadow-text: 1px 2px 0px oklch(24% 0.001 270 / 0.28);
+        --shadow-sm: 0 2px 8px oklch(24% 0.024 270 / 0.08);
+        --shadow-md: 0 8px 24px oklch(24% 0.024 270 / 0.12);
+        --shadow-lg: 0 16px 48px oklch(24% 0.024 270 / 0.18);
+
+        --padding-btn-sm: 0.825rem 1.25rem;
+        --padding-btn-md: 1.4rem 2.5rem;
+        --padding-btn-lg: 1.6rem 3rem;
+
+        --padding-sm: 0.6rem;
+        --padding-md: 1.3rem 1.6rem;
+        --padding-lg: 2rem 2.2rem;
+        --padding-xl: 3rem 3.2rem;
+        
+        --radius-xs: .375rem;
+        --radius-sm: .5rem;
+        --radius-md: .75rem;
+        --radius-lg: 1rem;
+        --radius-xl: 1.5rem;
+        --radius-pill: 6rem;
+
+        --container: 120rem;
+        --sidebar-width: 28rem;
+        --navbar-height: 6rem;
+
+        /* CORES GRADIENTES ───────────────────────────────────────────────────────────── */
+        --gradient-color1: light-dark(oklch(68% 0.064 82), oklch(48% 0.084 271));
+        --gradient-color2: light-dark(oklch(78% 0.054 82), oklch(28% 0.044 271));
+        --gradient-color3: light-dark(oklch(88% 0.034 82), oklch(14% 0.034 271));
+        --gradient-color4: light-dark(oklch(98% 0.014 82), oklch(14% 0.024 271));
+
+        --bg-gradient-primary: radial-gradient(circle at top, var(--gradient-color2) 0%, var(--gradient-color3) 45%, var(--gradient-color4) 100%);
+        --bg-gradient-center: radial-gradient(circle at center, var(--gradient-color2) 0%, var(--gradient-color3) 45%, var(--gradient-color4) 100%);
+        --bg-gradient-linear: linear-gradient( 135deg, oklch(16% 0.00002 271) 0%, oklch(25% 0.00003 271) 100% );
+        --bg-gradient-button: linear-gradient(135deg, oklch(78% 0.100 80), oklch(84% 0.098 82));
+    }
+    
+    /* .figtree {
+    font-family: "Figtree", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+    } */
+}
+
+/* ────────────────────────────────────────────────────────────────────────────────
+ *      RESET DE COMPONENTES HTML
+ * ──────────────────────────────────────────────────────────────────────────────── */
+@layer reset {
+    *{-webkit-tap-highlight-color: transparent;}
+    *,
+    *::before,
+    *::after{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;        
+    }
+    html {
+        font-size: var(---fs-default);
+        scroll-behavior:smooth;
+        /* transition: 0.35s ease-in-out; */
+    }
+    /* Força o navegador a renderizar o light-dark() como CLARO */
+    html[data-theme="light"] {
+        color-scheme: light;
+    }
+    /* Força o navegador a renderizar o light-dark() como ESCURO */
+    html[data-theme="dark"] {
+        color-scheme: dark;
+    }
+    body {
+        font-family: var(--font-body);
+        font-size: var(--fs-md);
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        line-height: 1.6;
+
+        background: var(--color-bg-main);
+        color: var(--color-fg-dark);
+
+        /* padding: 1.6rem; */
+        min-height:100vh;
+        overflow-x:hidden;
+        -webkit-font-smoothing: antialiased;
+    }
+/* -------------------------------------------------------------------------------------------- */
+    :where(h1, h2, h3, h4, h5, h6) {
+        font-family: var(--font-head);
+    }
+    :where(p,h1,h2,h3,h4,h5,h6) {
+        margin: 0;
+        overflow-wrap: normal;
+        /* overflow-wrap: break-word; */
+        /* hyphens: auto; */
+    }
+    :where(h1,h2,h3,h4) {
+        text-wrap: balance;
+        font-weight: 700;
+        /* letter-spacing: -0.02em; */
+    }
+    :where(p,h5,h6) {
+        font-weight: 600;
+        text-wrap: pretty;
+    }
+    p { font-size: var(--fs-md) }
+    h1 { font-size: var(--fs-lg4) }
+    h2 { font-size: var(--fs-lg3) }
+    h3 { font-size: var(--fs-lg2) }
+    h4 { font-size: var(--fs-lg1) }
+    h5 { font-size: var(--fs-lg) }
+    h6 { font-size: var(--fs-md) }
+    button {
+        font: inherit;
+        cursor: pointer;
+    }
+/* -------------------------------------------------------------------------------------------- */
+    img,
+    svg {
+        max-width: 100%;
+        display: block;
+    }
+    svg:not(:root) {
+        overflow: hidden;
+    }    
+    a {
+        color: inherit;
+        text-decoration: none;
+        text-decoration-skip-ink: auto;
+        font-size: inherit;
+        /* &:hover,
+        &:focus {
+            background-color: color-mix(in oklch, inherit, black 20%);
+        } */
+    }
+    table {
+        width:100%;
+        border-collapse:collapse;
+    }
+    th {
+        background: var(--color-primary);
+        color: var(--color-white);
+        padding: 1rem;
+        text-align: left;
+    }
+    td {
+        padding:1rem;
+        border-bottom:1px solid var(--color-white);
+    }
+    ul {
+        list-style: none;
+    }
+    li{
+        margin: 0.5rem 0;
+    }
+    hr {
+        border: 0;
+        border-bottom: 1px solid oklch(100% 0 0 / 0.2);
+        margin: .4rem 0;
+        padding: 0 1rem;    
+    }
+    sub, sup {
+        font-size: var(--fs-sm);
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+    }
+    sub {
+        bottom: -0.25em;
+    }
+    sup {
+        top: -0.5em;
+    }
+    /* correção para icones do fontawesome */
+    i[class*="fa-"],
+    svg[class*="fa-"] {
+        display: block;
+        margin-right: 4px;
+        width: auto;
+    }
+}
+
+/* ────────────────────────────────────────────────────────────────────────────────
+ *      ELEMENTOS DE LAYOUT
+ * ──────────────────────────────────────────────────────────────────────────────── */
+@layer layout {
+    .bg-glow{
+        position:fixed;
+        inset:0;
+        pointer-events:none;
+        background:
+            radial-gradient(
+                circle at top left,
+                oklch(98.47% 0.012 247.91 / 0.7), /* #FAFBFF com 70% opacidade para iluminar o fundo */
+                transparent 50%
+            ),
+            radial-gradient(
+                circle at bottom right,
+                oklch(15.93% 0.011 257.03 / 0.1), /* #161B1D com 12% opacidade para criar profundidade */
+                transparent 50%
+            );
+        z-index:-1;
+    }
+   .container{
+        width:min(
+            calc(100% - 2rem),
+            var(--container)
+        );
+        margin-inline:auto;
+    }    
+  
+    /* ────────────────────────────────────────────────────────────────────────────────
+     *      MAIN GRID
+     * ──────────────────────────────────────────────────────────────────────────────── */
+    .main-grid {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr; 
+        grid-template-areas:
+            "main-user"
+            "main-project"
+            "main-content";
+        align-items: flex-start;
+        justify-content: center;        
+        /* place-items: center; /* Centraliza vertical e horizontalmente ao mesmo tempo */
+        gap: 2rem; 
+        padding: 2rem;
+    }
+
+    /* Vinculando as classes do HTML às áreas do Grid */
+    .main-user-box {
+        grid-area: main-user;
+        display: grid;
+        width: 100%;
+        gap:2rem;
+    }
+
+    .main-content-box {
+        grid-area: main-content;
+        display: grid;
+        width: 100%;
+        gap:2rem;
+    }
+
+    .main-project-box {
+        grid-area: main-project;
+        display: grid;
+        width: 100%;
+        gap:2rem;
+    }
+    .project-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 2rem; 
+        padding: 2rem;
+        margin: -2rem;
+    }
+/* ────────────────────────────────────────────────────────────────────────────────
+ *      CARDS
+ * ──────────────────────────────────────────────────────────────────────────────── */
+    .neo-card {
+        display: grid;        
+        width: 100%;
+        background-color: var(--color-bg-main);
+        border-radius: 16px;
+        padding:2rem;
+        /* margin-bottom: 20px; */
+        gap:2rem;
+        box-shadow: -10px -10px 20px var(--shadow-light-color), 
+                    10px 10px 20px var(--shadow-dark-color);
+    }
+  /* 1ª Caixa: Inner Shadows (X&Y: 5, Blur: 10) */
+  .neo-shadow-inner-1 {
+    box-shadow: inset -5px -5px 10px var(--shadow-light-color), 
+                inset 5px 5px 10px var(--shadow-dark-color);
+  }
+
+  /* 2ª Caixa: Outer Shadows Suave (X&Y: 5, Blur: 10) */
+  .neo-shadow-outer-1 {
+    box-shadow: -5px -5px 10px var(--shadow-light-color), 
+                5px 5px 10px var(--shadow-dark-color);
+  }
+
+  /* 3ª Caixa: Outer Shadows Média (X&Y: 10, Blur: 20) */
+  .neo-shadow-outer-2 {
+    box-shadow: -10px -10px 20px var(--shadow-light-color), 
+                10px 10px 20px var(--shadow-dark-color);
+  }
+
+  /* 4ª Caixa: Outer Shadows Intensa (X&Y: 20, Blur: 40) */
+  .neo-shadow-outer-3 {
+    box-shadow: -20px -20px 40px var(--shadow-light-color), 
+                20px 20px 40px var(--shadow-dark-color);
+  }
+    .noir-card{
+        position:relative;
+        padding:2rem;
+        border-radius:var(--radius);
+        border:1px solid rgba(255,255,255,.05);
+        background:
+            linear-gradient(
+                180deg,
+                rgba(255,255,255,.04),
+                rgba(255,255,255,.02)
+            );
+        backdrop-filter:blur(12px);
+        transition:all .3s ease-in-out;
+    
+        &::before{
+            content:"";
+            position:absolute;
+            top:0;
+            left:0;
+            width:100%;
+            height:2px;
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--accent),
+                    transparent
+                );
+        }
+
+        &:hover{
+            transform:translateY(-4px);
+            /* Gradiente dinâmico usando as variáveis que o JS atualiza */
+            background: radial-gradient(
+                circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+                rgba(217,164,65,.12),
+                rgba(255,255,255,.02) 40%
+            );
+        }
+
+        & p{
+            margin-top:.75rem;
+            color:var(--muted);
+        }   
+    } 
+
+/* ────────────────────────────────────────────────────────────────────────────────
+ *      FORM COMPONENTS
+ * ──────────────────────────────────────────────────────────────────────────────── */
+    .form-card{
+        background:var(--surface);
+        border-radius:var(--radius);
+        padding:1.5rem;
+        border:1px solid rgba(255,255,255,.05);
+    }
+
+    .form-card h2{
+        margin-bottom:1.5rem;
+    }
+
+    .field{
+        margin-bottom:1rem;
+    }
+
+    .field label{
+        display:block;
+        margin-bottom:.5rem;
+    }
+
+    .field input,
+    .field textarea{
+        width:100%;
+        padding:1rem;
+        border-radius:1rem;
+        border:1px solid rgba(255,255,255,.08);
+        background:#0c0c0c;
+        color:white;
+    }
+
+    .field textarea{
+        resize:vertical;
+        min-height:140px;
+    }
+
+    .field input:focus,
+    .field textarea:focus{
+        outline:none;
+        border-color:var(--accent);
+        box-shadow:
+            0 0 15px rgba(217,164,65,.25);
+    }
+
+
+}
+
+/* ────────────────────────────────────────────────────────────────────────────────
+ *      COMPONENTES DA PÁGINA
+ * ──────────────────────────────────────────────────────────────────────────────── */
+@layer components {
+    .display-show{display: block;}
+    .display-hide{display: none;}
+    .is-visible{display: block !important;}
+    .card-padding{padding: 2rem;}
+
+    .center{
+        display: grid;
+        grid-template-columns: 1fr;        
+        place-items: center; /* Centraliza vertical e horizontalmente ao mesmo tempo */
+        text-align: center; 
+        gap: 1rem;
+    }
+
+    #avatar{
+        display: inline-block;
+        width: 20rem;
+        height: auto;
+    }
+
+    .text-sans {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+    }
+
+    #logo-svg {
+        width: 48px;
+        height: 48px;
+        fill: var(--color-text-accent);
+        color: var(--color-text-accent);
+        /* filter: drop-shadow(var(--shadow-text)); */
+    }
+
+    #logo-texto {
+        fill: var(--color-secondary);
+        font-family: var(--font-logo);
+        font-weight: 400;        
+    }
+
+/* ────────────────────────────────────────────────────────────────────────────────
+ *      BUTTONS
+ * ──────────────────────────────────────────────────────────────────────────────── */
+    .neo-btn {
+        display: inline-block;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        padding: 14px 24px;
+
+        border-radius: 12px;
+        border: 1px solid transparent;
+        outline: none;
+
+        background-color: var(--color-bg-main);
+        color: var(--color-gray-dark);
+
+        font-family: var(--font-body);
+        font-weight: 500;
+        /* font-size: 1rem; */
+        
+        cursor: pointer;
+        transition: all 0.25s ease-in-out;
+        box-shadow: -10px -10px 20px var(--shadow-light-color), 
+                    10px 10px 20px var(--shadow-dark-color);
+        &:hover, &:active{
+            box-shadow: inset -5px -5px 10px var(--shadow-light-color), 
+                        inset 5px 5px 10px var(--shadow-dark-color);            
+            transform: translateY(-1px);
+        }        
+    }
+    /* Botão Secundário usando a cor alternativa */
+    .neo-btn-alt {
+        background-color: var(--color-bg-alt);
+        box-shadow: -10px -10px 20px var(--color-btn-alt-shadow-1),        
+                    10px 10px 20px var(--color-btn-alt-shadow-2);
+
+        &:active {
+            box-shadow: inset -5px -5px 10px var(--color-btn-alt-shadow-1), 
+                        inset 5px 5px 10px var(--color-btn-alt-shadow-2);
+        }
+    }
+    .btn-project {
+        display: grid;        
+        width: 100%;
+        background-color: var(--color-bg-main);
+        border-radius: 16px;
+        padding: 1.2rem 2rem;
+        margin-bottom: 20px;
+        transition: .25s ease-in-out;
+        box-shadow: -10px -10px 20px var(--shadow-light-color), 
+                    10px 10px 20px var(--shadow-dark-color);        
+        &:hover, &:active{
+            box-shadow: inset -5px -5px 10px var(--shadow-light-color), 
+                        inset 5px 5px 10px var(--shadow-dark-color);            
+            transform: translateY(-1px);
+        }  
+    }
+
+}
+
+/* ────────────────────────────────────────────────────────────────────────────────
+ *      RESPONSIVIDADE DOS ELEMENTOS DA PÁGINA
+ * ──────────────────────────────────────────────────────────────────────────────── */
+@layer responsive {
+    /* --------------------------------------------------------------------------
+    1. CELULARES GRANDES / PAISAGEM (Landscape)
+    Dispositivos de 576px ou mais.
+    -------------------------------------------------------------------------- */
+    @media (min-width: 576px) {
+    /* Estilos para celulares deitados ou smartphones muito grandes (Pro Max/Ultra) */
+    
+    }
+
+    /* --------------------------------------------------------------------------
+    2. TABLETS
+    Dispositivos de 768px ou mais. Ex: iPad mini, iPad padrão, Galaxy Tab.
+    -------------------------------------------------------------------------- */
+    @media (min-width: 768px) {
+        .display-hide{display: block;}
+        .main-grid {
+            display:grid;
+            min-height: 100vh;
+            grid-template-columns: 1fr 2fr;
+            grid-template-rows: auto 1fr;      
+            /* grid-template-rows: repeat(1,1fr); */
+            grid-template-areas:
+                "main-user main-project"
+                "main-user main-content";
+        }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            align-items: flex-start;
+            justify-content: center;
+            gap: 2rem; 
+            padding: 2rem;
+        }        
+        /* O ponto de virada onde o layout geralmente ganha mais colunas */
+        .container{
+            width:min(var(--container),92%);
+            margin:auto;
+        }
+    }
+
+    /* --------------------------------------------------------------------------
+    3. TABLETS GRANDES / NOTEBOOKS PEQUENOS
+    Dispositivos de 992px ou mais. Ex: iPad Pro, Microsoft Surface, Laptops compactos.
+    -------------------------------------------------------------------------- */
+    @media (min-width: 992px) {    
+    /* Perfeito para mudar menus hambúrguer para menus horizontais extensos */
+
+    }
+
+    /* --------------------------------------------------------------------------
+    4. MONITORES DESKTOP PADRÃO
+    Dispositivos de 1200px ou mais. Ex: Notebooks de 13" a 15", monitores comuns de escritório.
+    -------------------------------------------------------------------------- */
+    @media (min-width: 1200px) {
+    /* Layout de desktop completo */
+        :root{
+            --fs-default: 14px;
+        }
+        .menu-toggle{
+            display:none;
+        }   
+    }
+
+    /* --------------------------------------------------------------------------
+    5. MONITORES GRANDES / TELAS RECENTES (Ultrawide e 4K)
+    Dispositivos de 1400px ou mais. Ex: Monitores gamers, iMacs, TVs.
+    -------------------------------------------------------------------------- */
+    @media (min-width: 1400px) {
+    /* Aqui você geralmente limita a largura máxima do seu site (max-width) 
+        para o conteúdo não ficar espalhado demais em telas gigantes */
+
+    }
+}

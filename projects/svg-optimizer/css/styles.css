@@ -1,0 +1,160 @@
+
+        /* Paleta Dracula & Terminal Vibe */
+        :root {
+            --bg: #282a36;
+            --current-line: #44475a;
+            --fg: #f8f8f2;
+            --comment: #6272a4;
+            --cyan: #8be9fd;
+            --green: #50fa7b;
+            --orange: #ffb86c;
+            --pink: #ff79c6;
+            --purple: #bd93f9;
+            --red: #ff5555;
+            --yellow: #f1fa8c;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: var(--purple);
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .panel {
+            background-color: var(--current-line);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .panel h2, .preview-header {
+            font-size: 1.2rem;
+            color: var(--cyan);
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            background-color: var(--bg);
+            color: var(--green);
+            border: 1px solid var(--comment);
+            border-radius: 4px;
+            padding: 10px;
+            font-family: inherit;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--pink);
+        }
+
+        .controls {
+            grid-column: 1 / -1;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        button {
+            background-color: var(--purple);
+            color: var(--bg);
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            font-family: inherit;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--pink);
+        }
+
+        button.danger {
+            background-color: var(--red);
+            color: var(--fg);
+        }
+
+        button.danger:hover {
+            background-color: #ff6e6e;
+        }
+
+        /* Botões utilitários menores (Copiar e Zoom) */
+        .btn-small {
+            background-color: var(--comment);
+            color: var(--fg);
+            font-size: 0.85rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        .btn-small:hover {
+            background-color: var(--purple);
+            color: var(--bg);
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 5px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .preview-container {
+            grid-column: 1 / -1;
+            background-color: var(--current-line);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .preview-box {
+            background-color: var(--bg);
+            border: 2px dashed var(--comment);
+            border-radius: 4px;
+            padding: 20px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+            overflow: auto;
+            position: relative;
+        }
+
+        /* Suporte ao Zoom do SVG interno */
+        .preview-box svg {
+            max-width: 100%;
+            max-height: 400px;
+            transition: transform 0.2s ease;
+            transform-origin: center center;
+        }

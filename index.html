@@ -1,118 +1,114 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="light">
+<!-- <html lang="pt-BR" data-theme="dark"> -->
 <head>
     <meta charset="UTF-8">
+    <meta name="language" content="pt-BR">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name= "author" content="Julio Gaiotto">
-    <meta name= "language" content="pt-BR">
-    <meta name= "description" content="Meu portfólio pessoal, projetos e experiência profissional">
-    <meta name= "keywords" content="Julio Gaiotto, portfólio, projetos, experiência profissional, analista de suporte, desenvolvedor de software" />
+    <meta name="author" content="Julio Gaiotto">
+    <meta name="description" content="Portfólio pessoal de Julio Gaiotto. Projetos e experiência profissional">
+    <meta name="keywords" content="Julio Gaiotto, portfólio, projetos, experiência profissional, analista de suporte, desenvolvedor de software" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">    
-    <link rel= "icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css">
-    <script src="https://kit.fontawesome.com/0385e0dbff.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- <link rel = "stylesheet" href="assets/css/style-noir.css"> -->
     <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
-
     <!-- Setup Google Analytics -->
-
     <!-- You can set your favicon here -->
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-
     <!-- end custom head snippets -->
-     <style>
-        .hide{
-            visibility: hidden;
-        }
-    </style>
-
 </head>
 
 <body>
-    <div class="wrapper">
-        <header class="flex-column card h-80">
-            <div class="flex-box">
-                <img class="img-shadow" style="width: 200px; height: 200px;" src="assets/img/julio-perfil.png" alt="Julio Gaiotto" />
-                <h1><b>Julio Gaiotto</b></h1>
-            </div>
-            <div class="flex-box">
-                <ul>
-                    <li><i class="fa-solid fa-laptop-code"></i> Desenvolvedor de Software</li>
-                    <li><i class="fa-solid fa-gears"></i> Suporte Técnico</li>
-                    <li><i class="fa-regular fa-house"></i> São Paulo, Brazil</li>
-                    <li><i class="fa-regular fa-envelope"></i> <span id="contato-email"></span></li>
-                    <li><a href="https://www.linkedin.com/in/juliogaiotto/" target="_blank">
-                        <i class="fa-brands fa-square-linkedin"></i> /juliogaiotto</a>
-                    </li>
-                    <li><a href="https://github.com/juliogaiotto" target="_blank">
-                            <i class="fa-brands fa-github"></i> github.com/juliogaiotto/</a>
-                    </li>
-                </ul>
-            </div>
-        </header>
-        
-        <section class="h-80">
-            <div class="flex-row card">
-                <div class="flex-box flex-full">
-                    <h2><i class="fa-solid fa-code"></i> Projetos em Destaque</h2>
-                </div>
-                <div class="flex-box flex-card flex-3">
-                    <a href="projects/mypass/"><i class="fa-solid fa-key"></i>
-                        <strong>MyPassWord</strong><br>
-                        <small>Gerador de Senhas Personalizadas</small></a>
-                </div>
-                <div class="flex-box flex-card flex-3">
-                    <a href="projects/svg-optimizer/"><i class="fa-regular fa-image"></i>
-                        <strong>SVG Optimizer</strong><br>
-                        <small>Limpa e otimiza arquivos SVG para HTML</small></a>
-                </div>
-                <div class="flex-box flex-card flex-3 hide">
-                    <a href="projects/surpresinha/"><i class="fa-solid fa-clover"></i>
-                        <strong>Surpresinha</strong><br>
-                        <small>Elaborador de jogos de Loterias</small></a>
-                </div>
-                <div class="flex-box flex-card flex-3 hide">&nbsp;
-                   
-                </div>
-            </div>
+    <!-- <div class="bg-glow"></div> -->
+    
+    <div class="container">
+        <main class="main-grid">
 
-            <hr>
+            <section class="main-user-box">
+                <article class="neo-card">
+                    <div class="center">
+                        <img id="avatar" class="" style="width: 200px; height: 200px;" src="assets/img/julio-perfil.webp" alt="Foto do perfil de Julio Gaiotto" />
+                        <h3><b>Julio Gaiotto</b></h3>
+                    </div>
+                </article>
 
-            <div class="flex-row">
-                <div class="flex-box card flex-full">                            
-                    <h2><i class="fa-solid fa-briefcase"></i> Experiência Profissional</h2>                    
+                <article class="neo-card">
+                    <div class="center">
+                        <ul style="text-align: left;">
+                            <li>
+                                <i class="fa-solid fa-gears"></i> Suporte Técnico
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-laptop-code"></i> Desenvolvedor Web
+                            </li>
+                            <li>
+                                <i class="fa-regular fa-house"></i> São Paulo, Brazil
+                            </li>
+                            <li>
+                                <i class="fa-regular fa-envelope"></i> <span id="contato-email"></span>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/juliogaiotto/" target="_blank">
+                                <i class="fa-brands fa-square-linkedin"></i> /juliogaiotto</a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/juliogaiotto" target="_blank">
+                                    <i class="fa-brands fa-github"></i> github.com/juliogaiotto/</a>
+                            </li>
+                        </ul>
+                    </div>
+                </article>
+            </section>
+
+            <section class="main-project-box">
+                <div class="neo-card">                    
+                    <h3><i class="fa-solid fa-code"></i> Projetos em Destaque</h3>
+                    <div class="project-grid">
+                        <a class="btn-project" href="projects/mypass/">
+                            <span><i class="fa-solid fa-key"></i> <strong>MyPassWord</strong><br></span>
+                            <small>Gerador de Senhas Personalizadas</small>
+                        </a>
+                        <a class="btn-project" href="projects/svg-optimizer/">
+                            <span><i class="fa-regular fa-image"></i><strong>SVG Optimizer</strong></span>
+                            <small>Limpa e otimiza arquivos SVG para HTML</small>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="main-content-box">
+                <div class="neo-card">
+                    <h3><i class="fa-solid fa-briefcase"></i> Experiência Profissional</h3>                    
                     <p>Com mais de 8 anos de jornada na área de TI, acredito que o suporte de alto nível não deve apenas conter 
                         os problemas, mas sim construir ferramentas que evitem que eles comecem. Minha experiência
                         transita entre o atendimento crítico de sistemas e a reestruturação de processos de suporte.</p>
-
                     <p>Hoje, utilizo meu conhecimento em desenvolvimento de scripts e softwares para transformar 
                         tarefas manuais em fluxos automatizados, garantindo que a tecnologia trabalhe a favor do 
-                        negócio. Sou graduado em Análise e Desenvolvimento de Sistemas e Técnico em Processamento de Dados. Busco constantemente 
-                        converter desafios técnicos em eficiência operacional.</p>
+                        negócio. Sou graduado em Análise e Desenvolvimento de Sistemas e Técnico em Processamento de Dados.</p>
+                    <p> Busco constantemente converter desafios técnicos em eficiência operacional.</p>
                 </div>
-            </div>  
-            <br>
-            <div class="flex-row">
-                <div class="flex-box card flex-full">  
-                    <h2><i class="fa-solid fa-award"></i> Educação</h2>                
-                    <h6 class="w3-opacity"><b>Bacharel em Análise e Desenvolvimento de Sistemas</b> | <i class="fa-regular fa-calendar-days"></i> 2025</h6>                    
-                    <h6 class="w3-opacity"><b>Ensino Técnico em Processamento de Dados</b> | <i class="fa-regular fa-calendar-days"></i> 1998</h6>
-                </div>            
-            </div>
+                
+                <div class="neo-card">
+                    <h3><i class="fa-solid fa-award"></i> Educação</h3>
+                    <p>Bacharel em Análise e Desenvolvimento de Sistemas <i class="fa-regular fa-calendar-days"></i>2025</p>
+                    <p>Ensino Técnico em Processamento de Dados <i class="fa-regular fa-calendar-days"></i>1998</p>
+                </div>
+            </section>
 
-        </section>
-
-        <footer class="flex-collumn center">
-            <hr />
-            <p><small><a href="https://translate.google.com/translate?sl=pt-br&tl=en&u=juliogaiotto.github.io" target="_blank">
-                <i class="fa-solid fa-language fa-fw"></i> Translate with Google Translate</a></small></p> 
-        </footer>
-        
+        </main>
     </div>
-    <script src="assets/js/script.js"></script>
+
+    <footer class="flex-collumn center" style="display:none;">
+        <p><small><a href="https://translate.google.com/translate?sl=pt-br&tl=en&u=juliogaiotto.github.io" target="_blank">
+            <i class="fa-solid fa-language fa-fw"></i> Translate with Google Translate</a></small></p> 
+    </footer>
+    
+    <script src="assets/js/scripts.js" defer></script>
 </body>
 
 </html>

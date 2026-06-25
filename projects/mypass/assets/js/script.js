@@ -13,7 +13,7 @@ btnGerar.addEventListener('click', () => {
     if (hasNum)
         charset += "0123456789";
     if (hasSpec)
-        charset += "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+        charset += "!@#$%^&*()_+~}{[]:;?><,./-=";
     if (charset === "") {
         alert("Selecione pelo menos uma opção de caracteres!");
         return;
