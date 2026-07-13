@@ -13,7 +13,7 @@ btnGerar.addEventListener('click', () => {
     if (hasNum)
         charset += "0123456789";
     if (hasSpec)
-        charset += "!@#$%^&*()_+~}{[]:;?><,./-=";
+        charset += "!@#$%^&*()_+~}{[]:;?><,./-=\\\'\"";
     if (charset === "") {
         alert("Selecione pelo menos uma opção de caracteres!");
         return;
@@ -24,6 +24,7 @@ btnGerar.addEventListener('click', () => {
         password += charset[randomIndex];
     }
     inputSenha.value = password;
+    inputSenha.dispatchEvent(new Event('input'));
     statusMessage.innerText = "";
 });
 
@@ -76,4 +77,51 @@ document.getElementById('btnSalvar').addEventListener('click', () => {
     // Limpeza
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+});
+
+
+
+// Lógica de Validação (JavaScript)
+// const passwordInput = document.getElementById('passwordInput');
+const passwordInput = document.getElementById('inputSenha');
+const strengthMeter = document.getElementById('strengthMeter');
+const strengthText = document.getElementById('strengthText');
+
+passwordInput.addEventListener('input', () => {
+    const password = passwordInput.value;
+    let score = 0;
+
+    if (password.length === 0) {
+        strengthMeter.style.width = '0%';
+        // strengthText.textContent = 'Digite uma senha...';
+        strengthText.textContent = ' ';
+        return;
+    }
+
+    // 1. Checa o comprimento
+    if (password.length >= 8) score++;
+    if (password.length >= 12) score++;
+
+    // 2. Checa variedade de caracteres (usando Expressões Regulares)
+    if (/[A-Z]/.test(password)) score++; // Tem maiúscula
+    if (/[0-9]/.test(password)) score++; // Tem número
+    if (/[^A-Za-z0-9]/.test(password)) score++; // Tem caractere especial
+
+    // 3. Atualiza o visual do medidor baseado no score (0 a 5)
+    let width = (score / 5) * 100;
+    strengthMeter.style.width = `${width}%`;
+
+    if (score <= 2) {
+        strengthMeter.style.backgroundColor = '#ff4d4d'; // Vermelho
+        strengthText.textContent = 'Fraca';
+        strengthText.style.color = '#ff4d4d';
+    } else if (score === 3 || score === 4) {
+        strengthMeter.style.backgroundColor = '#ffc107'; // Amarelo/Laranja
+        strengthText.textContent = 'Média';
+        strengthText.style.color = '#ffc107';
+    } else {
+        strengthMeter.style.backgroundColor = '#2ecc71'; // Verde
+        strengthText.textContent = 'Forte';
+        strengthText.style.color = '#2ecc71';
+    }
 });
